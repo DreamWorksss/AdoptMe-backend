@@ -35,3 +35,13 @@ dotnet ef database update --project AdoptMe.Repository --startup-project AdoptMe
 
 Start the server from VS
 
+## Adding migrations
+
+Migrations have a special command as we need to specify both the project containing the DbContext and the project containing the connection strings.
+
+When you want to add a migration you should use
+
+```bash
+dotnet ef migrations add Migration_Name --project AdoptMe.Repository --startup-project AdoptMe.Web
+```
+
