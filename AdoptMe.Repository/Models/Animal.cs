@@ -1,4 +1,4 @@
-﻿namespace AdoptMe.Common.Models
+﻿namespace AdoptMe.Repository.Models
 {
     public class Animal
     {
