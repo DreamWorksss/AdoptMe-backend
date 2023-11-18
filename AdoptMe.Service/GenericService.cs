@@ -1,5 +1,4 @@
 ﻿using AdoptMe.Repository;
-using AdoptMe.Repository.DataContext;
 using AdoptMe.Service.Interfaces;
 
 namespace AdoptMe.Service
