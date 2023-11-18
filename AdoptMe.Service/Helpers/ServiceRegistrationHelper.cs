@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using AdoptMe.Service.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace AdoptMe.Service.Helpers
 {
@@ -6,7 +7,7 @@ namespace AdoptMe.Service.Helpers
     {
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
-            //here you add your custom services like that: services.AddScoped<Interface, Implementation>();
+            services.AddScoped<IAnimalService, AnimalService>();
             return services;
         }
     }
