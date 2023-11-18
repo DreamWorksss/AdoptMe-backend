@@ -9,7 +9,10 @@ namespace AdoptMe.Repository.DataContext
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            modelBuilder.Entity<Animal>()
+                .HasKey(x => x.Id);
+            modelBuilder.Entity<Animal>()
+                .Property(x => x.Id).ValueGeneratedOnAdd();
         }
 
         public DbSet<Animal> Animals { get; set; }
