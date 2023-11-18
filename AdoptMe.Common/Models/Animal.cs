@@ -1,6 +1,4 @@
-﻿using System.Drawing;
-
-namespace AdoptMe.Common.Models
+﻿namespace AdoptMe.Common.Models
 {
     public class Animal
     {
@@ -11,11 +9,6 @@ namespace AdoptMe.Common.Models
         public string Color { get; set; }
         public string Description { get; set; }
         public string ShelterId {  get; set; }
-
-        public Animal()
-        {
-            
-        }
 
         public Animal(string id, string name, string gender, DateTime dateOfBirth, string color, string description, string shelterId)
         {
