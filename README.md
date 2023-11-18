@@ -11,7 +11,7 @@ This application serves as the backend application for the AdoptMe platform.
 
 ## Pre-requisites
 
-Install PostgreSQL with default settings and the password set to **Admin**
+Install PostgreSQL with default settings and the password set to **admin**
 
 Create a database from pgAdmin4 with the name **AdoptMe_RO_CJ**, on port **5432**
 
