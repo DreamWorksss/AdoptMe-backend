@@ -9,6 +9,7 @@ namespace AdoptMe.Repository.Helpers
         {
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped<IAnimalRepository, AnimalRepository>();
+            services.AddScoped<IShelterRepository, ShelterRepository>();
             return services;
         }
     }
