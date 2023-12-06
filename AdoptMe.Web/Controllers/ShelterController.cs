@@ -29,7 +29,7 @@ namespace AdoptMe.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult RetrieveAnimal(int id)
+        public IActionResult RetrieveShelter(int id)
         {
             return Ok(_shelterService.RetrieveShelter(id)); //TODO: not found exception to be handled by the middleware in the future
         }
