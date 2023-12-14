@@ -1,4 +1,6 @@
-﻿namespace AdoptMe.Repository.Models
+﻿using System.Text.Json.Serialization;
+
+namespace AdoptMe.Repository.Models
 {
     public class Animal
     {
@@ -9,6 +11,12 @@
         public string Color { get; set; }
         public string Description { get; set; }
         public int ShelterId {  get; set; }
+        [JsonIgnore]
+        public virtual Shelter Shelter { get; set; }
+
+        public Animal()
+        {
+        }
 
         public Animal(int id, string name, string gender, DateTime birthdate, string color, string description, int shelterId)
         {

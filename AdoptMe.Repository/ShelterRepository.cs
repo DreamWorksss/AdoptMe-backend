@@ -3,6 +3,7 @@ using AdoptMe.Common.Models;
 using AdoptMe.Repository.DataContext;
 using AdoptMe.Repository.Interfaces;
 using AdoptMe.Repository.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace AdoptMe.Repository
 {
@@ -17,7 +18,7 @@ namespace AdoptMe.Repository
 
         public PaginatedList<Shelter> RetrieveShelters(int page = 0, int pageSize = 15, string sortBy = "", bool sortDesc = false)
         {
-            var shelters = _context.Shelters.AsQueryable();
+            var shelters = _context.Shelters.Include(s => s.Animals).AsQueryable();
             shelters = sortBy switch
             {
                 ShelterSortingFields.Name or _ => sortDesc ? shelters.OrderByDescending(x => x.Name) : shelters.OrderBy(x => x.Name)
