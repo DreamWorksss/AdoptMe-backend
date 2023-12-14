@@ -2,7 +2,6 @@
 using AdoptMe.Common.Models;
 using AdoptMe.Repository.Models;
 
-
 namespace AdoptMe.Service.Interfaces
 {
     /// <summary>

@@ -6,7 +6,6 @@ using AdoptMe.Service.Interfaces;
 using AdoptMe.Service.Exceptions;
 using Microsoft.Extensions.DependencyInjection;
 
-
 namespace AdoptMe.Service
 {
     public class ShelterService : IShelterService

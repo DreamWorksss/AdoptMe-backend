@@ -3,7 +3,7 @@
 namespace AdoptMe.Service.Exceptions
 {
     [Serializable]
-    internal class ShelterNotFoundException : Exception
+    public class ShelterNotFoundException : Exception
     {
         public ShelterNotFoundException()
         {

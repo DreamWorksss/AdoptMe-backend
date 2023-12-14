@@ -1,10 +1,12 @@
 ﻿using AdoptMe.Common.CommonConstants;
 using AdoptMe.Repository.Models;
 using AdoptMe.Service.Interfaces;
+using AdoptMe.Service.Exceptions;
 using AdoptMe.Web.Models.Shelters;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
+using System;
 
 namespace AdoptMe.Web.Controllers
 {
@@ -25,24 +27,67 @@ namespace AdoptMe.Web.Controllers
         [HttpGet]
         public IActionResult RetrieveShelters(int page = 0, int pageSize = 15, string sortBy = AnimalSortingFields.Name, bool sortDesc = false)
         {
-            return Ok(_shelterService.RetrieveShelters(page, pageSize, sortBy, sortDesc)); //TODO: add proper response
+            try
+            {
+                var shelters = _shelterService.RetrieveShelters(page, pageSize, sortBy, sortDesc);
+                return Ok(shelters);
+            }
+            catch (ServiceException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (ShelterNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Internal Server Error");
+            }
         }
 
         [HttpGet]
         public IActionResult RetrieveShelter(int id)
         {
-            return Ok(_shelterService.RetrieveShelter(id)); //TODO: not found exception to be handled by the middleware in the future
+            try
+            {
+                var shelter = _shelterService.RetrieveShelter(id);
+                return Ok(shelter);
+            }
+            catch (ServiceException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (ShelterNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Internal Server Error");
+            }
         }
 
         [HttpPost]
         public IActionResult AddShelter([FromBody] ShelterAdditionModel shelterAdditionModel)
         {
-            if (shelterAdditionModel != null)
+            try
             {
-                _shelterService.AddShelter(_mapper.Map<Shelter>(shelterAdditionModel));
-                return Ok("Shelter added successfully"); //TODO: add proper response
+                if (shelterAdditionModel != null)
+                {
+                    _shelterService.AddShelter(_mapper.Map<Shelter>(shelterAdditionModel));
+                    return Ok("Shelter added successfully");
+                }
+                return BadRequest("Invalid shelter model");
             }
-            return BadRequest("Invalid shelter model"); //TODO: add proper response
+            catch (ServiceException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Internal Server Error");
+            }
         }
     }
 }
