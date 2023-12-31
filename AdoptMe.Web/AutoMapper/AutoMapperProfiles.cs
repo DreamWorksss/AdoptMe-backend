@@ -9,7 +9,7 @@ namespace AdoptMe.Web.AutoMapper
     {
         public AutoMapperProfiles()
         {
-            this.CreateMap<AnimalAdditionModel, Animal>().ReverseMap();
+            this.CreateMap<PetAdditionModel, Pet>().ReverseMap();
             this.CreateMap<ShelterAdditionModel, Shelter>().ReverseMap();
         }
     }

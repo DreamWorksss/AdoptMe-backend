@@ -9,9 +9,9 @@ namespace AdoptMe.Repository.DataContext
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Animal>()
+            modelBuilder.Entity<Pet>()
                 .HasKey(x => x.Id);
-            modelBuilder.Entity<Animal>()
+            modelBuilder.Entity<Pet>()
                 .Property(x => x.Id).ValueGeneratedOnAdd();
             modelBuilder.Entity<Shelter>()
                 .HasKey(x => x.Id);
@@ -19,7 +19,7 @@ namespace AdoptMe.Repository.DataContext
                 .Property(x => x.Id).ValueGeneratedOnAdd();
         }
 
-        public DbSet<Animal> Animals { get; set; }
+        public DbSet<Pet> Pets { get; set; }
         public DbSet<Shelter> Shelters { get; set; }
     }
 }

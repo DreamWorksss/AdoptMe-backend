@@ -11,35 +11,35 @@ namespace AdoptMe.Web.Controllers
     [Route("api/[controller]/[action]")]
     [SwaggerTag("Animals API")]
     [ApiController]
-    public class AnimalsController : ControllerBase
+    public class PetsController : ControllerBase
     {
-        private readonly IAnimalService _animalService;
+        private readonly IPetService _animalService;
         private readonly IMapper _mapper;
 
-        public AnimalsController(IServiceProvider service)
+        public PetsController(IServiceProvider service)
         {
-            _animalService = service.GetRequiredService<IAnimalService>();
+            _animalService = service.GetRequiredService<IPetService>();
             _mapper = service.GetRequiredService<IMapper>();
         }
 
         [HttpGet]
-        public IActionResult RetrieveAnimals(int page = 0, int pageSize = 15, string sortBy = AnimalSortingFields.Name, bool sortDesc = false)
+        public IActionResult RetrievePets(int page = 0, int pageSize = 15, string sortBy = PetSortingFields.Name, bool sortDesc = false)
         {
             return Ok(_animalService.RetrieveAnimals(page, pageSize, sortBy, sortDesc)); //TODO: add proper response
         }
 
         [HttpGet]
-        public IActionResult RetrieveAnimal(int id)
+        public IActionResult RetrievePet(int id)
         {
             return Ok(_animalService.RetrieveAnimal(id)); //TODO: not found exception to be handled by the middleware in the future
         }
 
         [HttpPost]
-        public IActionResult AddAnimal([FromBody] AnimalAdditionModel animalAdditionModel)
+        public IActionResult AddAnimal([FromBody] PetAdditionModel animalAdditionModel)
         {
             if (animalAdditionModel != null)
             {
-                _animalService.AddAnimal(_mapper.Map<Animal>(animalAdditionModel));
+                _animalService.AddPet(_mapper.Map<Pet>(animalAdditionModel));
                 return Ok("Animal added successfully"); //TODO: add proper response, not this bullshit
             }
             return BadRequest("Invalid animal model"); //TODO: add proper response, not this bullshit

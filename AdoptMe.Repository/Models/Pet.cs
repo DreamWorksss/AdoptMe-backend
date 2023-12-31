@@ -2,7 +2,7 @@
 
 namespace AdoptMe.Repository.Models
 {
-    public class Animal
+    public class Pet
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -14,11 +14,11 @@ namespace AdoptMe.Repository.Models
         [JsonIgnore]
         public virtual Shelter Shelter { get; set; }
 
-        public Animal()
+        public Pet()
         {
         }
 
-        public Animal(int id, string name, string gender, DateTime birthdate, string color, string description, int shelterId)
+        public Pet(int id, string name, string gender, DateTime birthdate, string color, string description, int shelterId)
         {
             Id = id;
             Name = name;
@@ -29,7 +29,7 @@ namespace AdoptMe.Repository.Models
             ShelterId = shelterId;
         }
 
-        public Animal(string name, string gender, DateTime birthdate, string color, string description, int shelterId)
+        public Pet(string name, string gender, DateTime birthdate, string color, string description, int shelterId)
         {
             Name = name;
             Gender = gender;
