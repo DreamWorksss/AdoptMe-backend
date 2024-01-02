@@ -5,9 +5,9 @@
         public int Id { get; set; }
         public int PetId { get; set; }
         public string UserEmail { get; set; }
-        public float Money { get; set; }
+        public decimal Money { get; set; }
 
-        public Donation(int id, int petid, string email, float money)
+        public Donation(int id, int petid, string email, decimal money)
         {
             Id = id;
             PetId = petid;
@@ -15,7 +15,7 @@
             Money = money;
         }
 
-        public Donation(int petid, string email, float money)
+        public Donation(int petid, string email, decimal money)
         {
             PetId = petid;
             UserEmail = email;
