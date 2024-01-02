@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AdoptMe.Repository.Migrations
 {
     [DbContext(typeof(AdoptMeDbContext))]
-    [Migration("20231118192437_AnimalKeyDefinition")]
-    partial class AnimalKeyDefinition
+    [Migration("20231118192437_PetKeyDefinition")]
+    partial class PetKeyDefinition
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace AdoptMe.Repository.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("AdoptMe.Repository.Models.Animal", b =>
+            modelBuilder.Entity("AdoptMe.Repository.Models.Pet", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -57,7 +57,7 @@ namespace AdoptMe.Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Animals");
+                    b.ToTable("Pets");
                 });
 #pragma warning restore 612, 618
         }

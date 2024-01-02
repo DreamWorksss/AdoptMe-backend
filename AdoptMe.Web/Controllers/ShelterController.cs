@@ -25,7 +25,7 @@ namespace AdoptMe.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult RetrieveShelters(int page = 0, int pageSize = 15, string sortBy = AnimalSortingFields.Name, bool sortDesc = false)
+        public IActionResult RetrieveShelters(int page = 0, int pageSize = 15, string sortBy = PetSortingFields.Name, bool sortDesc = false)
         {
             try
             {

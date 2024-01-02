@@ -5,43 +5,43 @@ using AdoptMe.Repository.Models;
 namespace AdoptMe.Service.Interfaces
 {
     /// <summary>
-    /// Provides access to Animal Service
+    /// Provides access to Pet Service
     /// </summary>
-    public interface IAnimalService
+    public interface IPetService
     {
         /// <summary>
-        /// Retrieves an animal by its id
+        /// Retrieves an pet by its id
         /// </summary>
         /// <param name="id"></param>
-        /// <returns>Animal</returns>
-        Animal RetrieveAnimal(int id);
+        /// <returns>Pet</returns>
+        Pet RetrievePet(int id);
 
         /// <summary>
-        /// Retrieves a paginated list of all animals
+        /// Retrieves a paginated list of all pets
         /// </summary>
         /// <param name="page"></param>
         /// <param name="pageSize"></param>
         /// <param name="sortBy"></param>
         /// <param name="sortDesc"></param>
-        /// <returns>Paginated list of animals</returns>
-        PaginatedList<Animal> RetrieveAnimals(int page = 0, int pageSize = 15, string sortBy = AnimalSortingFields.Name, bool sortDesc = false);
+        /// <returns>Paginated list of pets</returns>
+        PaginatedList<Pet> RetrievePets(int page = 0, int pageSize = 15, string sortBy = PetSortingFields.Name, bool sortDesc = false);
 
         /// <summary>
-        /// Adds a new animal
+        /// Adds a new pet
         /// </summary>
-        /// <param name="animal"></param>
-        void AddAnimal(Animal animal);
+        /// <param name="pet"></param>
+        void AddPet(Pet pet);
 
         /// <summary>
-        /// Deletes an animal from the database
+        /// Deletes an pet from the database
         /// </summary>
-        /// <param name="animal"></param>
-        void DeleteAnimal(Animal animal);
+        /// <param name="pet"></param>
+        void DeletePet(Pet pet);
 
         /// <summary>
-        /// Updates an animal from the database
+        /// Updates an pet from the database
         /// </summary>
-        /// <param name="animal"></param>
-        void UpdateAnimal(Animal animal);
+        /// <param name="pet"></param>
+        void UpdatePet(Pet pet);
     }
 }

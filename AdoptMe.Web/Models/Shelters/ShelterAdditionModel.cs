@@ -5,6 +5,6 @@ namespace AdoptMe.Web.Models.Shelters
     public class ShelterAdditionModel
     {
         public string Name { get; set; }
-        public List<Animal> Animals { get; set; }
+        public List<Pet> Pets { get; set; }
     }
 }

@@ -25,7 +25,7 @@ namespace AdoptMe.Repository.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("AdoptMe.Repository.Models.Animal", b =>
+            modelBuilder.Entity("AdoptMe.Repository.Models.Pet", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -57,7 +57,7 @@ namespace AdoptMe.Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Animals");
+                    b.ToTable("Pets");
                 });
 #pragma warning restore 612, 618
         }

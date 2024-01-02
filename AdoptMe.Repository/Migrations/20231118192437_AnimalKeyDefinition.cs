@@ -5,14 +5,14 @@
 namespace AdoptMe.Repository.Migrations
 {
     /// <inheritdoc />
-    public partial class AnimalKeyDefinition : Migration
+    public partial class PetKeyDefinition : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.RenameColumn(
                 name: "DateOfBirth",
-                table: "Animals",
+                table: "Pets",
                 newName: "Birthdate");
         }
 
@@ -21,7 +21,7 @@ namespace AdoptMe.Repository.Migrations
         {
             migrationBuilder.RenameColumn(
                 name: "Birthdate",
-                table: "Animals",
+                table: "Pets",
                 newName: "DateOfBirth");
         }
     }

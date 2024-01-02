@@ -22,7 +22,7 @@ namespace AdoptMe.Repository.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("AdoptMe.Repository.Models.Animal", b =>
+            modelBuilder.Entity("AdoptMe.Repository.Models.Pet", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -56,7 +56,7 @@ namespace AdoptMe.Repository.Migrations
 
                     b.HasIndex("ShelterId");
 
-                    b.ToTable("Animals");
+                    b.ToTable("Pets");
                 });
 
             modelBuilder.Entity("AdoptMe.Repository.Models.Shelter", b =>
@@ -76,10 +76,10 @@ namespace AdoptMe.Repository.Migrations
                     b.ToTable("Shelters");
                 });
 
-            modelBuilder.Entity("AdoptMe.Repository.Models.Animal", b =>
+            modelBuilder.Entity("AdoptMe.Repository.Models.Pet", b =>
                 {
                     b.HasOne("AdoptMe.Repository.Models.Shelter", "Shelter")
-                        .WithMany("Animals")
+                        .WithMany("Pets")
                         .HasForeignKey("ShelterId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -89,7 +89,7 @@ namespace AdoptMe.Repository.Migrations
 
             modelBuilder.Entity("AdoptMe.Repository.Models.Shelter", b =>
                 {
-                    b.Navigation("Animals");
+                    b.Navigation("Pets");
                 });
 #pragma warning restore 612, 618
         }

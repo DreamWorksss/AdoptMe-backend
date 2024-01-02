@@ -1,6 +1,6 @@
 ﻿namespace AdoptMe.Common.CommonConstants
 {
-    public static class AnimalSortingFields
+    public static class PetSortingFields
     {
         public const string Name = "Name";
         public const string Description = "Description";

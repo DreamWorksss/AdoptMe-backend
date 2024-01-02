@@ -13,7 +13,7 @@ namespace AdoptMe.Repository.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Animals",
+                name: "Pets",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -27,7 +27,7 @@ namespace AdoptMe.Repository.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Animals", x => x.Id);
+                    table.PrimaryKey("PK_Pets", x => x.Id);
                 });
         }
 
@@ -35,7 +35,7 @@ namespace AdoptMe.Repository.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Animals");
+                name: "Pets");
         }
     }
 }

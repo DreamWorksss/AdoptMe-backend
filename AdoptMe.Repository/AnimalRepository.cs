@@ -6,32 +6,32 @@ using AdoptMe.Repository.Models;
 
 namespace AdoptMe.Repository
 {
-    public class AnimalRepository : GenericRepository<Animal>, IAnimalRepository
+    public class PetRepository : GenericRepository<Pet>, IPetRepository
     {
         private readonly AdoptMeDbContext _context;
 
-        public AnimalRepository(AdoptMeDbContext context) : base(context)
+        public PetRepository(AdoptMeDbContext context) : base(context)
         {
             _context = context;
         }
 
-        public PaginatedList<Animal> RetrieveAnimals(int page = 0, int pageSize = 15, string sortBy = "", bool sortDesc = false)
+        public PaginatedList<Pet> RetrievePets(int page = 0, int pageSize = 15, string sortBy = "", bool sortDesc = false)
         {
-            var animals = _context.Animals.AsQueryable();
-            animals = sortBy switch
+            var pets = _context.Pets.AsQueryable();
+            pets = sortBy switch
             {
-                AnimalSortingFields.Color => sortDesc ? animals.OrderByDescending(x => x.Color) : animals.OrderBy(x => x.Color),
-                AnimalSortingFields.Birthdate => sortDesc ? animals.OrderByDescending(x => x.Birthdate) : animals.OrderBy(x => x.Birthdate),
-                AnimalSortingFields.Description => sortDesc ? animals.OrderByDescending(x => x.Description) : animals.OrderBy(x => x.Description),
-                AnimalSortingFields.Name or _ => sortDesc ? animals.OrderByDescending(x => x.Name) : animals.OrderBy(x => x.Name)
+                PetSortingFields.Color => sortDesc ? pets.OrderByDescending(x => x.Color) : pets.OrderBy(x => x.Color),
+                PetSortingFields.Birthdate => sortDesc ? pets.OrderByDescending(x => x.Birthdate) : pets.OrderBy(x => x.Birthdate),
+                PetSortingFields.Description => sortDesc ? pets.OrderByDescending(x => x.Description) : pets.OrderBy(x => x.Description),
+                PetSortingFields.Name or _ => sortDesc ? pets.OrderByDescending(x => x.Name) : pets.OrderBy(x => x.Name)
             };
 
-            var animalCount = animals.Count();
-            return new PaginatedList<Animal>
+            var petCount = pets.Count();
+            return new PaginatedList<Pet>
             {
-                Entities = animals.Skip(page * pageSize).Take(pageSize).ToList(),
-                TotalNumberOfEntities = animalCount,
-                TotalNumberOfPages = (int)Math.Ceiling(animalCount / (double)pageSize)
+                Entities = pets.Skip(page * pageSize).Take(pageSize).ToList(),
+                TotalNumberOfEntities = petCount,
+                TotalNumberOfPages = (int)Math.Ceiling(petCount / (double)pageSize)
             };
         }
     }

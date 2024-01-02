@@ -25,13 +25,13 @@ namespace AdoptMe.Repository.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Animals_ShelterId",
-                table: "Animals",
+                name: "IX_Pets_ShelterId",
+                table: "Pets",
                 column: "ShelterId");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Animals_Shelters_ShelterId",
-                table: "Animals",
+                name: "FK_Pets_Shelters_ShelterId",
+                table: "Pets",
                 column: "ShelterId",
                 principalTable: "Shelters",
                 principalColumn: "Id",
@@ -42,15 +42,15 @@ namespace AdoptMe.Repository.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Animals_Shelters_ShelterId",
-                table: "Animals");
+                name: "FK_Pets_Shelters_ShelterId",
+                table: "Pets");
 
             migrationBuilder.DropTable(
                 name: "Shelters");
 
             migrationBuilder.DropIndex(
-                name: "IX_Animals_ShelterId",
-                table: "Animals");
+                name: "IX_Pets_ShelterId",
+                table: "Pets");
         }
     }
 }

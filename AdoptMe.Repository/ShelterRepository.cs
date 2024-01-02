@@ -18,7 +18,7 @@ namespace AdoptMe.Repository
 
         public PaginatedList<Shelter> RetrieveShelters(int page = 0, int pageSize = 15, string sortBy = "", bool sortDesc = false)
         {
-            var shelters = _context.Shelters.Include(s => s.Animals).AsQueryable();
+            var shelters = _context.Shelters.Include(s => s.Pets).AsQueryable();
             shelters = sortBy switch
             {
                 ShelterSortingFields.Name or _ => sortDesc ? shelters.OrderByDescending(x => x.Name) : shelters.OrderBy(x => x.Name)

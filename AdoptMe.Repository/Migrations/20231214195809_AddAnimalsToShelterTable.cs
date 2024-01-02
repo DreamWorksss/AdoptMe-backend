@@ -5,7 +5,7 @@
 namespace AdoptMe.Repository.Migrations
 {
     /// <inheritdoc />
-    public partial class AddAnimalsToShelterTable : Migration
+    public partial class AddPetsToShelterTable : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

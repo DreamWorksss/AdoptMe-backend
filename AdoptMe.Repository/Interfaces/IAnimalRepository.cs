@@ -4,18 +4,18 @@ using AdoptMe.Repository.Models;
 namespace AdoptMe.Repository.Interfaces
 {
     /// <summary>
-    /// Provides access to Animal Repository
+    /// Provides access to Pet Repository
     /// </summary>
-    public interface IAnimalRepository : IGenericRepository<Animal>
+    public interface IPetRepository : IGenericRepository<Pet>
     {
         /// <summary>
-        /// Retrieves a paginated list of all animals
+        /// Retrieves a paginated list of all pets
         /// </summary>
         /// <param name="page"></param>
         /// <param name="pageSize"></param>
         /// <param name="sortBy"></param>
         /// <param name="sortDesc"></param>
-        /// <returns>Paginated list of animals</returns>
-        PaginatedList<Animal> RetrieveAnimals(int page = 0, int pageSize = 15, string sortBy = "", bool sortDesc = false);
+        /// <returns>Paginated list of pets</returns>
+        PaginatedList<Pet> RetrievePets(int page = 0, int pageSize = 15, string sortBy = "", bool sortDesc = false);
     }
 }

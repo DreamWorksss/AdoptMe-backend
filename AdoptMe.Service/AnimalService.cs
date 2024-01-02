@@ -7,38 +7,38 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace AdoptMe.Service
 {
-    public class AnimalService : IAnimalService
+    public class PetService : IPetService
     {
-        private readonly IAnimalRepository _animalRepository;
+        private readonly IPetRepository _petRepository;
 
-        public AnimalService(IServiceProvider serviceProvider)
+        public PetService(IServiceProvider serviceProvider)
         {
-            _animalRepository = serviceProvider.GetRequiredService<IAnimalRepository>();
+            _petRepository = serviceProvider.GetRequiredService<IPetRepository>();
         }
 
-        public void AddAnimal(Animal animal)
+        public void AddPet(Pet pet)
         {
-            _animalRepository.Add(animal);
+            _petRepository.Add(pet);
         }
 
-        public void DeleteAnimal(Animal animal)
+        public void DeletePet(Pet pet)
         {
-            _animalRepository.Delete(animal);
+            _petRepository.Delete(pet);
         }
 
-        public Animal RetrieveAnimal(int id)
+        public Pet RetrievePet(int id)
         {
-            return _animalRepository.RetrieveById(id) ?? throw new Exception("Animal not found"); //TODO: Add proper exception handling
+            return _petRepository.RetrieveById(id) ?? throw new Exception("Pet not found"); //TODO: Add proper exception handling
         }
 
-        public PaginatedList<Animal> RetrieveAnimals(int page = 0, int pageSize = 15, string sortBy = AnimalSortingFields.Name, bool sortDesc = false)
+        public PaginatedList<Pet> RetrievePets(int page = 0, int pageSize = 15, string sortBy = PetSortingFields.Name, bool sortDesc = false)
         {
-            return _animalRepository.RetrieveAnimals(page, pageSize, sortBy, sortDesc);
+            return _petRepository.RetrievePets(page, pageSize, sortBy, sortDesc);
         }
 
-        public void UpdateAnimal(Animal animal)
+        public void UpdatePet(Pet pet)
         {
-            _animalRepository.Update(animal);
+            _petRepository.Update(pet);
         }
     }
 }
