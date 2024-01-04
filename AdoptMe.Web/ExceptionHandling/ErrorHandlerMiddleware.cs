@@ -1,5 +1,7 @@
-﻿using AdoptMe.Service.Exceptions;
+﻿using AdoptMe.Common.DatabaseConstants;
+using AdoptMe.Service.Exceptions;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Net;
 using System.Text.Json;
 
@@ -38,6 +40,17 @@ namespace AdoptMe.Web.ExceptionHandling
                                 Detail = ex.Message,
                                 Status = StatusCodes.Status400BadRequest,
                                 Type = ErrorTypes.AlreadyExists
+                            };
+                            break;
+                        }
+                    case DbUpdateConcurrencyException _:
+                    case DbUpdateException _:
+                        {
+                            error = new ProblemDetails()
+                            {
+                                Detail = DbErrorMessages.UpdateError,
+                                Status = StatusCodes.Status500InternalServerError,
+                                Type = ErrorTypes.InternalServerError
                             };
                             break;
                         }
