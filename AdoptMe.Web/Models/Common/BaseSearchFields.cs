@@ -1,6 +1,6 @@
 ﻿using AdoptMe.Common.CommonConstants;
 
-namespace AdoptMe.Web.Models.Common.SearchFields
+namespace AdoptMe.Web.Models.Common
 {
     public class BaseSearchFields
     {

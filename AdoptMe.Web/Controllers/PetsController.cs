@@ -1,7 +1,9 @@
 ﻿using AdoptMe.Common.CommonConstants;
 using AdoptMe.Repository.Models;
 using AdoptMe.Service.Interfaces;
+using AdoptMe.Web.ExceptionHandling;
 using AdoptMe.Web.Models.Animals;
+using AdoptMe.Web.Models.Pets;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
@@ -13,36 +15,37 @@ namespace AdoptMe.Web.Controllers
     [ApiController]
     public class PetsController : ControllerBase
     {
-        private readonly IPetService _animalService;
+        private readonly IPetService _petService;
         private readonly IMapper _mapper;
 
         public PetsController(IServiceProvider service)
         {
-            _animalService = service.GetRequiredService<IPetService>();
+            _petService = service.GetRequiredService<IPetService>();
             _mapper = service.GetRequiredService<IMapper>();
         }
 
         [HttpGet]
-        public IActionResult RetrievePets(int page = 0, int pageSize = 15, string sortBy = PetSortingFields.Name, bool sortDesc = false)
+        public IActionResult RetrievePets([FromQuery] PetSearchFields petSearchFields)
         {
-            return Ok(_animalService.RetrieveAnimals(page, pageSize, sortBy, sortDesc)); //TODO: add proper response
+            var pets = _petService.RetrievePets(petSearchFields.Page, petSearchFields.PageSize, petSearchFields.SortBy, petSearchFields.SortDesc);
+            return ResponseHandler.HandleResponse(pets);
         }
 
         [HttpGet]
         public IActionResult RetrievePet(int id)
         {
-            return Ok(_animalService.RetrieveAnimal(id)); //TODO: not found exception to be handled by the middleware in the future
+            return ResponseHandler.HandleResponse(_petService.RetrievePet(id));
         }
 
         [HttpPost]
-        public IActionResult AddAnimal([FromBody] PetAdditionModel animalAdditionModel)
+        public IActionResult AddPet([FromBody] PetAdditionModel petAdditionModel)
         {
-            if (animalAdditionModel != null)
+            if (petAdditionModel != null)
             {
-                _animalService.AddPet(_mapper.Map<Pet>(animalAdditionModel));
-                return Ok("Animal added successfully"); //TODO: add proper response, not this bullshit
+                var pet = _petService.AddPet(_mapper.Map<Pet>(petAdditionModel));
+                return ResponseHandler.HandleResponse(pet);
             }
-            return BadRequest("Invalid animal model"); //TODO: add proper response, not this bullshit
+            return ResponseHandler.HandleResponse(PetErrorMessages.InvalidModel);
         }
     }
 }

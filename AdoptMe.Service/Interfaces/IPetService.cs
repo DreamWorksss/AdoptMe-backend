@@ -14,7 +14,7 @@ namespace AdoptMe.Service.Interfaces
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Animal</returns>
-        Pet RetrieveAnimal(int id);
+        Pet RetrievePet(int id);
 
         /// <summary>
         /// Retrieves a paginated list of all animals
@@ -24,13 +24,13 @@ namespace AdoptMe.Service.Interfaces
         /// <param name="sortBy"></param>
         /// <param name="sortDesc"></param>
         /// <returns>Paginated list of animals</returns>
-        PaginatedList<Pet> RetrieveAnimals(int page = 0, int pageSize = 15, string sortBy = PetSortingFields.Name, bool sortDesc = false);
+        PaginatedList<Pet> RetrievePets(int page = 0, int pageSize = 15, string sortBy = PetSortingFields.Name, bool sortDesc = false);
 
         /// <summary>
         /// Adds a new animal
         /// </summary>
         /// <param name="animal"></param>
-        void AddPet(Pet animal);
+        Pet AddPet(Pet animal);
 
         /// <summary>
         /// Deletes an animal from the database

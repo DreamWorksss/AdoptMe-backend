@@ -1,6 +1,7 @@
 ﻿using AdoptMe.Common.CommonConstants;
+using AdoptMe.Web.Models.Common;
 
-namespace AdoptMe.Web.Models.Common.SearchFields
+namespace AdoptMe.Web.Models.Pets
 {
     public class PetSearchFields : BaseSearchFields
     {

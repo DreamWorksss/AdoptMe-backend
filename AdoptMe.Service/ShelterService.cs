@@ -2,8 +2,8 @@
 using AdoptMe.Common.Models;
 using AdoptMe.Repository.Interfaces;
 using AdoptMe.Repository.Models;
+using AdoptMe.Service.Exceptions.Shelters;
 using AdoptMe.Service.Interfaces;
-using AdoptMe.Service.Exceptions;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace AdoptMe.Service
@@ -17,69 +17,35 @@ namespace AdoptMe.Service
             _shelterRepository = serviceProvider.GetRequiredService<IShelterRepository>();
         }
 
-        public void AddShelter(Shelter shelter)
+        public Shelter AddShelter(Shelter shelter)
         {
-            try
-            {
-                _shelterRepository.Add(shelter);
-            }
-            catch (Exception ex)
-            {
-                throw new ServiceException("Error adding shelter", ex);
-            }
+            return _shelterRepository.Add(shelter);
         }
 
         public void DeleteShelter(Shelter shelter)
         {
-            try
-            {
-                _shelterRepository.Delete(shelter);
-            }
-            catch (Exception ex)
-            {
-                throw new ServiceException("Error deleting shelter", ex);
-            }
+            _shelterRepository.Delete(shelter);
         }
 
         public Shelter RetrieveShelter(int id)
         {
-            try
+
+            var retrievedShelter = _shelterRepository.RetrieveById(id);
+            if (retrievedShelter == null)
             {
-                var retrievedShelter = _shelterRepository.RetrieveById(id);
-                if (retrievedShelter == null)
-                {
-                    throw new ShelterNotFoundException("Shelter not found");
-                }
-                return retrievedShelter;
+                throw new ShelterNotFoundException();
             }
-            catch (Exception ex)
-            {
-                throw new ServiceException("Error retrieving shelter", ex);
-            }
+            return retrievedShelter;
         }
 
         public PaginatedList<Shelter> RetrieveShelters(int page = 0, int pageSize = 15, string sortBy = ShelterSortingFields.Name, bool sortDesc = false)
         {
-            try
-            {
-                return _shelterRepository.RetrieveShelters(page, pageSize, sortBy, sortDesc);
-            }
-            catch (Exception ex)
-            {
-                throw new ServiceException("Error retrieving shelters", ex);
-            }
+            return _shelterRepository.RetrieveShelters(page, pageSize, sortBy, sortDesc);
         }
 
         public void UpdateShelter(Shelter Shelter)
         {
-            try
-            {
-                _shelterRepository.Update(Shelter);
-            }
-            catch (Exception ex)
-            {
-                throw new ServiceException("Error updating shelter", ex);
-            }
+            _shelterRepository.Update(Shelter);
         }
     }
 }

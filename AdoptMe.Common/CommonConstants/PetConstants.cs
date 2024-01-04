@@ -7,4 +7,9 @@
         public const string Birthdate = "Birthdate";
         public const string Color = "Color";
     }
+
+    public static class PetErrorMessages
+    {
+        public const string InvalidModel = "Invalid pet addition model.";
+    }
 }
