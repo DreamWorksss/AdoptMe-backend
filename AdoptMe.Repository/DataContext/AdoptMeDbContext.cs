@@ -13,8 +13,13 @@ namespace AdoptMe.Repository.DataContext
                 .HasKey(x => x.Id);
             modelBuilder.Entity<Animal>()
                 .Property(x => x.Id).ValueGeneratedOnAdd();
+            modelBuilder.Entity<Shelter>()
+                .HasKey(x => x.Id);
+            modelBuilder.Entity <Shelter>()
+                .Property(x => x.Id).ValueGeneratedOnAdd();
         }
 
         public DbSet<Animal> Animals { get; set; }
+        public DbSet<Shelter> Shelters { get; set; }
     }
 }

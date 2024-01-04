@@ -3,6 +3,7 @@ using System;
 using AdoptMe.Repository.DataContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AdoptMe.Repository.Migrations
 {
     [DbContext(typeof(AdoptMeDbContext))]
-    partial class AdoptMeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231206145839_CreateShelters")]
+    partial class CreateShelters
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -78,13 +81,11 @@ namespace AdoptMe.Repository.Migrations
 
             modelBuilder.Entity("AdoptMe.Repository.Models.Animal", b =>
                 {
-                    b.HasOne("AdoptMe.Repository.Models.Shelter", "Shelter")
+                    b.HasOne("AdoptMe.Repository.Models.Shelter", null)
                         .WithMany("Animals")
                         .HasForeignKey("ShelterId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Shelter");
                 });
 
             modelBuilder.Entity("AdoptMe.Repository.Models.Shelter", b =>

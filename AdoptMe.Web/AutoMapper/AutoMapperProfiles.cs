@@ -1,5 +1,6 @@
 ﻿using AdoptMe.Repository.Models;
 using AdoptMe.Web.Models.Animals;
+using AdoptMe.Web.Models.Shelters;
 using AutoMapper;
 
 namespace AdoptMe.Web.AutoMapper
@@ -9,6 +10,7 @@ namespace AdoptMe.Web.AutoMapper
         public AutoMapperProfiles()
         {
             this.CreateMap<AnimalAdditionModel, Animal>().ReverseMap();
+            this.CreateMap<ShelterAdditionModel, Shelter>().ReverseMap();
         }
     }
 }
