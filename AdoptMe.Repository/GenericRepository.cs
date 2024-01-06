@@ -12,10 +12,11 @@ namespace AdoptMe.Repository
             _context = context;
         }
 
-        public void Add(T entity)
+        public T Add(T entity)
         {
             _context.Set<T>().Add(entity);
             _context.SaveChanges();
+            return entity;
         }
 
         public void Delete(T entity)

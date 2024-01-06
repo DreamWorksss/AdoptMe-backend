@@ -1,6 +1,6 @@
 ﻿namespace AdoptMe.Web.Models.Animals
 {
-    public class AnimalAdditionModel
+    public class PetAdditionModel
     {
         public string Name { get; set; }
         public string Gender { get; set; }

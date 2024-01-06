@@ -6,7 +6,7 @@ namespace AdoptMe.Repository.Interfaces
     /// <summary>
     /// Provides access to Animal Repository
     /// </summary>
-    public interface IAnimalRepository : IGenericRepository<Animal>
+    public interface IPetRepository : IGenericRepository<Pet>
     {
         /// <summary>
         /// Retrieves a paginated list of all animals
@@ -16,6 +16,6 @@ namespace AdoptMe.Repository.Interfaces
         /// <param name="sortBy"></param>
         /// <param name="sortDesc"></param>
         /// <returns>Paginated list of animals</returns>
-        PaginatedList<Animal> RetrieveAnimals(int page = 0, int pageSize = 15, string sortBy = "", bool sortDesc = false);
+        PaginatedList<Pet> RetrievePets(int page = 0, int pageSize = 15, string sortBy = "", bool sortDesc = false);
     }
 }

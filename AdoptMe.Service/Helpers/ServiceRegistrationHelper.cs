@@ -7,7 +7,7 @@ namespace AdoptMe.Service.Helpers
     {
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
-            services.AddScoped<IAnimalService, AnimalService>();
+            services.AddScoped<IPetService, PetService>();
             services.AddScoped<IShelterService, ShelterService>();
             return services;
         }

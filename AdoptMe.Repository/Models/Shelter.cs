@@ -4,24 +4,24 @@
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public virtual List<Animal> Animals { get; set; }
+        public virtual List<Pet> Animals { get; set; }
 
         public Shelter()
         {
-            Animals = new List<Animal>();
+            Animals = new List<Pet>();
         }
 
-        public Shelter(int id, string name, List<Animal> animals)
+        public Shelter(int id, string name, List<Pet> animals)
         {
             Id = id;
             Name = name;
-            Animals = animals ?? new List<Animal>();
+            Animals = animals ?? new List<Pet>();
         }
 
-        public Shelter(string name, List<Animal> animals)
+        public Shelter(string name, List<Pet> animals)
         {
             Name = name;
-            Animals = animals ?? new List<Animal>();
+            Animals = animals ?? new List<Pet>();
         }
     }
 }

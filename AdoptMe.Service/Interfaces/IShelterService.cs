@@ -30,7 +30,7 @@ namespace AdoptMe.Service.Interfaces
         /// Adds a new Shelter
         /// </summary>
         /// <param name="shelter"></param>
-        void AddShelter(Shelter shelter);
+        Shelter AddShelter(Shelter shelter);
 
         /// <summary>
         /// Deletes a Shelter from the database

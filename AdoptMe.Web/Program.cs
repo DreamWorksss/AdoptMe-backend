@@ -2,6 +2,7 @@ using AdoptMe.Repository.DataContext;
 using AdoptMe.Repository.Helpers;
 using AdoptMe.Service.Helpers;
 using AdoptMe.Web.AutoMapper;
+using AdoptMe.Web.ExceptionHandling;
 using AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,8 +24,11 @@ var mappingConfig = new MapperConfiguration(mc =>
     mc.AddProfile(new AutoMapperProfiles());
 });
 builder.Services.AddSingleton(mappingConfig.CreateMapper());
+builder.Services.AddSingleton<ErrorHandlerMiddleware>();
 
 var app = builder.Build();
+
+app.UseMiddleware<ErrorHandlerMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

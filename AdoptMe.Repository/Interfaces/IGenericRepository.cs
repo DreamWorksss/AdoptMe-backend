@@ -27,7 +27,8 @@
         /// Adds a new entity to the database
         /// </summary>
         /// <param name="entity"></param>
-        void Add(T entity);
+        /// <returns>The new added entity</returns>
+        T Add(T entity);
 
         /// <summary>
         /// Updates the entity from the database 
