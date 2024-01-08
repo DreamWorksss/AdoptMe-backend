@@ -27,6 +27,16 @@ namespace AdoptMe.Service.Interfaces
         PaginatedList<Shelter> RetrieveShelters(int page = 0, int pageSize = 15, string sortBy = ShelterSortingFields.Name, bool sortDesc = false);
 
         /// <summary>
+        /// Retrieves a list of all Shelters
+        /// </summary>
+        /// <param name="page"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="sortBy"></param>
+        /// <param name="sortDesc"></param>
+        /// <returns>Get a list of all Shelters</returns>
+        List<Shelter> GetAllShelters();
+
+        /// <summary>
         /// Adds a new Shelter
         /// </summary>
         /// <param name="shelter"></param>
@@ -35,8 +45,8 @@ namespace AdoptMe.Service.Interfaces
         /// <summary>
         /// Deletes a Shelter from the database
         /// </summary>
-        /// <param name="shelter"></param>
-        void DeleteShelter(Shelter shelter);
+        /// <param name="shelterId"></param>
+        void DeleteShelter(int shelterId);
 
         /// <summary>
         /// Updates a Shelter from the database

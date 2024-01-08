@@ -17,14 +17,19 @@ namespace AdoptMe.Service
             _shelterRepository = serviceProvider.GetRequiredService<IShelterRepository>();
         }
 
+        public List<Shelter> GetAllShelters()
+        {
+            return _shelterRepository.GetAllShelters();
+        }
+
         public Shelter AddShelter(Shelter shelter)
         {
             return _shelterRepository.Add(shelter);
         }
 
-        public void DeleteShelter(Shelter shelter)
+        public void DeleteShelter(int shelterId)
         {
-            _shelterRepository.Delete(shelter);
+            _shelterRepository.DeleteShelter(shelterId);
         }
 
         public Shelter RetrieveShelter(int id)
@@ -43,9 +48,13 @@ namespace AdoptMe.Service
             return _shelterRepository.RetrieveShelters(page, pageSize, sortBy, sortDesc);
         }
 
-        public void UpdateShelter(Shelter Shelter)
+        public void UpdateShelter(Shelter shelter)
         {
-            _shelterRepository.Update(Shelter);
+            if (shelter == null)
+            {
+                throw new ShelterNotFoundException();
+            }
+            _shelterRepository.UpdateShelter(shelter);
         }
     }
 }

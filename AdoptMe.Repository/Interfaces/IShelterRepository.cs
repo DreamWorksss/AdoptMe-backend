@@ -22,5 +22,23 @@ namespace AdoptMe.Repository.Interfaces
         /// <param name="sortDesc"></param>
         /// <returns>Paginated list of shelters</returns>
         PaginatedList<Shelter> RetrieveShelters(int page = 0, int pageSize = 15, string sortBy = "", bool sortDesc = false);
+
+        /// <summary>
+        /// Retrieves a list of all shelters without pagination.
+        /// </summary>
+        /// <returns>List of all shelters.</returns>
+        List<Shelter> GetAllShelters();
+
+        /// <summary>
+        /// Updates the information of an existing shelter.
+        /// </summary>
+        /// <param name="shelter">The shelter entity with updated information.</param>
+        void UpdateShelter(Shelter shelter);
+
+        /// <summary>
+        /// Deletes a shelter by its identifier.
+        /// </summary>
+        /// <param name="shelterId">The identifier of the shelter to delete.</param>
+        void DeleteShelter(int shelterId);
     }
 }
