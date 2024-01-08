@@ -40,14 +40,10 @@ namespace AdoptMe.Repository
 
         public void UpdateShelter(Shelter shelter)
         {
-            var existingShelter = _context.Shelters.Find(shelter.Id);
-
-            if (existingShelter != null)
-            {
-                _context.Entry(existingShelter).CurrentValues.SetValues(shelter);
-                _context.SaveChanges();
-            }
+            _context.Update(shelter);
+            _context.SaveChanges();
         }
+
 
         public void DeleteShelter(int shelterId)
         {

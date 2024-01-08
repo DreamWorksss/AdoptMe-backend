@@ -48,9 +48,13 @@ namespace AdoptMe.Service
             return _shelterRepository.RetrieveShelters(page, pageSize, sortBy, sortDesc);
         }
 
-        public void UpdateShelter(Shelter Shelter)
+        public void UpdateShelter(Shelter shelter)
         {
-            _shelterRepository.UpdateShelter(Shelter);
+            if (shelter == null)
+            {
+                throw new ShelterNotFoundException();
+            }
+            _shelterRepository.UpdateShelter(shelter);
         }
     }
 }

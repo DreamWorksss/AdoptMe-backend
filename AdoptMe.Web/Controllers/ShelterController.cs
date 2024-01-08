@@ -58,15 +58,15 @@ namespace AdoptMe.Web.Controllers
             return ResponseHandler.HandleResponse(ShelterErrorMessages.InvalidModel);
         }
 
-        [HttpPut]
-        public IActionResult UpdateShelter([FromBody] ShelterUpdateModel shelterUpdateModel)
+        [HttpPut("{id}")]
+        public IActionResult UpdateShelter(int id, [FromBody] ShelterUpdateModel shelterUpdateModel)
         {
             if (shelterUpdateModel != null)
             {
-                var shelter = _shelterService.RetrieveShelter(shelterUpdateModel.Id);
-                if (shelter != null)
+                var existingShelter = _shelterService.RetrieveShelter(id);
+                if (existingShelter != null)
                 {
-                    _shelterService.UpdateShelter(_mapper.Map<Shelter>(shelterUpdateModel));
+                    _shelterService.UpdateShelter(existingShelter);
                     return Ok();
                 }
                 else
@@ -74,8 +74,10 @@ namespace AdoptMe.Web.Controllers
                     return NotFound();
                 }
             }
+
             return ResponseHandler.HandleResponse(ShelterErrorMessages.InvalidModel);
         }
+
 
         [HttpDelete]
         public IActionResult DeleteShelter(int id)

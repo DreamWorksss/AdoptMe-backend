@@ -33,7 +33,7 @@ namespace AdoptMe.Service.Interfaces
         /// <param name="pageSize"></param>
         /// <param name="sortBy"></param>
         /// <param name="sortDesc"></param>
-        /// <returns>Paginated list of Shelters</returns>
+        /// <returns>Get a list of all Shelters</returns>
         IEnumerable<Shelter> GetAllShelters();
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace AdoptMe.Service.Interfaces
         /// <summary>
         /// Deletes a Shelter from the database
         /// </summary>
-        /// <param name="shelter"></param>
+        /// <param name="shelterId"></param>
         void DeleteShelter(int shelterId);
 
         /// <summary>
