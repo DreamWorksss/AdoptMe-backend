@@ -22,5 +22,8 @@ namespace AdoptMe.Repository.Interfaces
         /// <param name="sortDesc"></param>
         /// <returns>Paginated list of shelters</returns>
         PaginatedList<Shelter> RetrieveShelters(int page = 0, int pageSize = 15, string sortBy = "", bool sortDesc = false);
+        IEnumerable<Shelter> GetAllShelters();
+        void UpdateShelter(Shelter shelter);
+        void DeleteShelter(int shelterId);
     }
 }

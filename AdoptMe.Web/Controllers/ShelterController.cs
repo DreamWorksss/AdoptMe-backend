@@ -34,6 +34,13 @@ namespace AdoptMe.Web.Controllers
         }
 
         [HttpGet]
+        public IActionResult RetrieveAllShelters()
+        {
+            var allShelters = _shelterService.GetAllShelters();
+            return Ok(allShelters);
+        }
+
+        [HttpGet]
         public IActionResult RetrieveShelter(int id)
         {
             var shelter = _shelterService.RetrieveShelter(id);
@@ -49,6 +56,39 @@ namespace AdoptMe.Web.Controllers
                 return ResponseHandler.HandleResponse(shelter);
             }
             return ResponseHandler.HandleResponse(ShelterErrorMessages.InvalidModel);
+        }
+
+        [HttpPut]
+        public IActionResult UpdateShelter([FromBody] ShelterUpdateModel shelterUpdateModel)
+        {
+            if (shelterUpdateModel != null)
+            {
+                var shelter = _shelterService.RetrieveShelter(shelterUpdateModel.Id);
+                if (shelter != null)
+                {
+                    _shelterService.UpdateShelter(_mapper.Map<Shelter>(shelterUpdateModel));
+                    return Ok();
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            return ResponseHandler.HandleResponse(ShelterErrorMessages.InvalidModel);
+        }
+
+        [HttpDelete]
+        public IActionResult DeleteShelter(int id)
+        {
+            try
+            {
+                _shelterService.DeleteShelter(id);
+                return Ok();
+            }
+            catch (ShelterNotFoundException)
+            {
+                return NotFound();
+            }
         }
     }
 }

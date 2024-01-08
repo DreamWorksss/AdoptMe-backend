@@ -32,5 +32,31 @@ namespace AdoptMe.Repository
                 TotalNumberOfPages = (int)Math.Ceiling(shelterCount / (double)pageSize)
             };
         }
+
+        public IEnumerable<Shelter> GetAllShelters()
+        {
+            return _context.Shelters.Include(s => s.Animals).ToList();
+        }
+
+        public void UpdateShelter(Shelter shelter)
+        {
+            var existingShelter = _context.Shelters.Find(shelter.Id);
+
+            if (existingShelter != null)
+            {
+                _context.Entry(existingShelter).CurrentValues.SetValues(shelter);
+                _context.SaveChanges();
+            }
+        }
+
+        public void DeleteShelter(int shelterId)
+        {
+            var shelter = _context.Shelters.Find(shelterId);
+            if (shelter != null)
+            {
+                _context.Shelters.Remove(shelter);
+                _context.SaveChanges();
+            }
+        }
     }
 }

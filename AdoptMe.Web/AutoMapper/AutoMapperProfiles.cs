@@ -11,6 +11,7 @@ namespace AdoptMe.Web.AutoMapper
         {
             this.CreateMap<PetAdditionModel, Pet>().ReverseMap();
             this.CreateMap<ShelterAdditionModel, Shelter>().ReverseMap();
+            this.CreateMap<ShelterUpdateModel, Shelter>().ReverseMap();
         }
     }
 }
