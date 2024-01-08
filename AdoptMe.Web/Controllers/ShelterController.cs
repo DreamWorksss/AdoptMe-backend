@@ -82,15 +82,8 @@ namespace AdoptMe.Web.Controllers
         [HttpDelete]
         public IActionResult DeleteShelter(int id)
         {
-            try
-            {
-                _shelterService.DeleteShelter(id);
-                return Ok();
-            }
-            catch (ShelterNotFoundException)
-            {
-                return NotFound();
-            }
+            _shelterService.DeleteShelter(id);
+            return Ok();
         }
     }
 }
