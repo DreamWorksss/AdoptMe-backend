@@ -17,7 +17,7 @@ namespace AdoptMe.Service
             _shelterRepository = serviceProvider.GetRequiredService<IShelterRepository>();
         }
 
-        public IEnumerable<Shelter> GetAllShelters()
+        public List<Shelter> GetAllShelters()
         {
             return _shelterRepository.GetAllShelters();
         }

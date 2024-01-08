@@ -27,7 +27,7 @@ namespace AdoptMe.Repository.Interfaces
         /// Retrieves a list of all shelters without pagination.
         /// </summary>
         /// <returns>List of all shelters.</returns>
-        IEnumerable<Shelter> GetAllShelters();
+        List<Shelter> GetAllShelters();
 
         /// <summary>
         /// Updates the information of an existing shelter.

@@ -33,7 +33,7 @@ namespace AdoptMe.Repository
             };
         }
 
-        public IEnumerable<Shelter> GetAllShelters()
+        public List<Shelter> GetAllShelters()
         {
             return _context.Shelters.Include(s => s.Animals).ToList();
         }

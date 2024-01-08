@@ -34,7 +34,7 @@ namespace AdoptMe.Service.Interfaces
         /// <param name="sortBy"></param>
         /// <param name="sortDesc"></param>
         /// <returns>Get a list of all Shelters</returns>
-        IEnumerable<Shelter> GetAllShelters();
+        List<Shelter> GetAllShelters();
 
         /// <summary>
         /// Adds a new Shelter
