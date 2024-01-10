@@ -7,6 +7,8 @@
         public string UserEmail { get; set; }
         public decimal Money { get; set; }
 
+        public Donation() { }
+
         public Donation(int id, int petid, string email, decimal money)
         {
             Id = id;
