@@ -9,10 +9,11 @@ namespace AdoptMe.Web.Models.Pets
         public PetFilterFields? Filters { get; set; }
     }
 
-    public class PetFilterFields
+    public class PetFilterFields : BaseSearchFields
     {
         public bool IsAvailable { get; set; }
         public int Age { get; set; }
         public string Color { get; set; } = string.Empty;
+        public int ShelterId {  get; set; }
     }
 }

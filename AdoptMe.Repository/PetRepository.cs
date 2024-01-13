@@ -3,6 +3,7 @@ using AdoptMe.Common.Models;
 using AdoptMe.Repository.DataContext;
 using AdoptMe.Repository.Interfaces;
 using AdoptMe.Repository.Models;
+using Z.EntityFramework.Plus;
 
 namespace AdoptMe.Repository
 {
@@ -25,6 +26,20 @@ namespace AdoptMe.Repository
                 PetSortingFields.Description => sortDesc ? pets.OrderByDescending(x => x.Description) : pets.OrderBy(x => x.Description),
                 PetSortingFields.Name or _ => sortDesc ? pets.OrderByDescending(x => x.Name) : pets.OrderBy(x => x.Name)
             };
+
+            var animalCount = pets.Count();
+            return new PaginatedList<Pet>
+            {
+                Entities = pets.Skip(page * pageSize).Take(pageSize).ToList(),
+                TotalNumberOfEntities = animalCount,
+                TotalNumberOfPages = (int)Math.Ceiling(animalCount / (double)pageSize)
+            };
+        }
+
+        public PaginatedList<Pet> RetrievePetsByShelter(int sortBy, int page = 0, int pageSize = 15)
+        {
+            var pets = _context.Pets.AsQueryable();
+            pets = pets.Where(p => p.ShelterId == sortBy);
 
             var animalCount = pets.Count();
             return new PaginatedList<Pet>

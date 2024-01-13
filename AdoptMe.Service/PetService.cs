@@ -37,6 +37,11 @@ namespace AdoptMe.Service
             return _petRepository.RetrievePets(page, pageSize, sortBy, sortDesc);
         }
 
+        public PaginatedList<Pet> RetrievePetsByShelter(int filterBy, int page = 0, int pageSize = 15)
+        {
+            return _petRepository.RetrievePetsByShelter(filterBy, page, pageSize);
+        }
+
         public void UpdateAnimal(Pet animal)
         {
             _petRepository.Update(animal);

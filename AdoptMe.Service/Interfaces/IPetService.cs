@@ -26,6 +26,8 @@ namespace AdoptMe.Service.Interfaces
         /// <returns>Paginated list of animals</returns>
         PaginatedList<Pet> RetrievePets(int page = 0, int pageSize = 15, string sortBy = PetSortingFields.Name, bool sortDesc = false);
 
+        PaginatedList<Pet> RetrievePetsByShelter(int filterby, int page = 0, int pageSize = 15);
+
         /// <summary>
         /// Adds a new animal
         /// </summary>

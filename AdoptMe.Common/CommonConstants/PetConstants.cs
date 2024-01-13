@@ -6,6 +6,7 @@
         public const string Description = "Description";
         public const string Birthdate = "Birthdate";
         public const string Color = "Color";
+        public const string ShelterId = "ShelterId";
     }
 
     public static class PetErrorMessages
