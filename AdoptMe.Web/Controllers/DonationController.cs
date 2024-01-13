@@ -8,6 +8,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using System;
+using NetTopologySuite.Geometries;
 
 namespace AdoptMe.Web.Controllers
 {
@@ -43,7 +44,7 @@ namespace AdoptMe.Web.Controllers
         public IActionResult RetrieveDonation(int id)
         {
             var donation = _donationService.RetrieveDonation(id);
-            return Ok(donation);
+            return ResponseHandler.HandleResponse(donation);
         }
 
         [HttpPost]
@@ -66,11 +67,11 @@ namespace AdoptMe.Web.Controllers
                 if (existingDonation != null)
                 {
                     _donationService.UpdateDonation(existingDonation);
-                    return Ok();
+                    return ResponseHandler.HandleResponse(existingDonation);
                 }
                 else
                 {
-                    return NotFound();
+                    return ResponseHandler.HandleResponse(existingDonation);
                 }
             }
 
@@ -81,7 +82,7 @@ namespace AdoptMe.Web.Controllers
         public IActionResult DeleteDonation(int id)
         {
             _donationService.DeleteDonation(id);
-            return Ok();
+            return ResponseHandler.HandleResponse(id);
         }
     }
 }

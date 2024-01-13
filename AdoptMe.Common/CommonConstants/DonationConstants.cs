@@ -7,6 +7,6 @@
 
     public static class DonationErrorMessages
     {
-        public const string InvalidModel = "Invalid shelter addition model.";
+        public const string InvalidModel = "Invalid donation addition model.";
     }
 }
