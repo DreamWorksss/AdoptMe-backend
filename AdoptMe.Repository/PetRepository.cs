@@ -36,10 +36,10 @@ namespace AdoptMe.Repository
             };
         }
 
-        public PaginatedList<Pet> RetrievePetsByShelter(int sortBy, int page = 0, int pageSize = 15)
+        public PaginatedList<Pet> RetrievePetsByShelter(int shelterId, int page = 0, int pageSize = 15)
         {
             var pets = _context.Pets.AsQueryable();
-            pets = pets.Where(p => p.ShelterId == sortBy);
+            pets = pets.Where(p => p.ShelterId == shelterId);
 
             var animalCount = pets.Count();
             return new PaginatedList<Pet>
