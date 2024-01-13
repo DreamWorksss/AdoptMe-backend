@@ -44,14 +44,10 @@ namespace AdoptMe.Repository
             _context.SaveChanges();
         }
 
-        public void DeleteDonation(int donationId)
+        public void DeleteDonation(Donation donation)
         {
-            var donation = _context.Donations.Find(donationId);
-            if (donation != null)
-            {
-                _context.Donations.Remove(donation);
-                _context.SaveChanges();
-            }
+            _context.Donations.Remove(donation);
+            _context.SaveChanges();
         }
     }
 }

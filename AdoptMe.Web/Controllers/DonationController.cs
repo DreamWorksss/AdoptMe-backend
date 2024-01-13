@@ -27,14 +27,14 @@ namespace AdoptMe.Web.Controllers
         public IActionResult RetrieveDonations(int page = 0, int pageSize = 15, string sortBy = DonationSortingFields.UserEmail, bool sortDesc = false)
         {
             var donations = _donationService.RetrieveDonations(page, pageSize, sortBy, sortDesc);
-            return Ok(donations);
+            return ResponseHandler.HandleResponse(donations);
         }
 
         [HttpGet]
         public IActionResult RetrieveAllDonations()
         {
             var allDonations = _donationService.GetAllDonations();
-            return Ok(allDonations);
+            return ResponseHandler.HandleResponse(allDonations);
         }
 
         [HttpGet]
@@ -68,7 +68,7 @@ namespace AdoptMe.Web.Controllers
                 }
                 else
                 {
-                    return ResponseHandler.HandleResponse(existingDonation);
+                    return ResponseHandler.HandleResponse(DonationErrorMessages.InexistentModel);
                 }
             }
 

@@ -34,6 +34,6 @@ namespace AdoptMe.Repository.Interfaces
         /// Deletes a donation by its identifier.
         /// </summary>
         /// <param name="donationId">The identifier of the donation to delete.</param>
-        void DeleteDonation(int donationId);
+        void DeleteDonation(Donation donation);
     }
 }

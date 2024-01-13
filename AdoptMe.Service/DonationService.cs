@@ -4,6 +4,7 @@ using AdoptMe.Repository.Interfaces;
 using AdoptMe.Repository.Models;
 using AdoptMe.Service.Exceptions.Donations;
 using AdoptMe.Service.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
 
@@ -30,7 +31,11 @@ namespace AdoptMe.Service
 
         public void DeleteDonation(int donationId)
         {
-            _donationRepository.DeleteDonation(donationId);
+            var donation = _donationRepository.RetrieveById(donationId);
+            if (donation != null)
+            {
+                _donationRepository.DeleteDonation(donation);
+            }
         }
 
         public Donation RetrieveDonation(int id)
