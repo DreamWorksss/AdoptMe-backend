@@ -11,5 +11,6 @@
     public static class PetErrorMessages
     {
         public const string InvalidModel = "Invalid pet addition model.";
+        public const string InexistentModel = "The pet does not exist.";
     }
 }
