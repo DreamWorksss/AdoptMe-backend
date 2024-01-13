@@ -1,14 +1,11 @@
 ﻿using AdoptMe.Common.CommonConstants;
 using AdoptMe.Repository.Models;
 using AdoptMe.Service.Interfaces;
-using AdoptMe.Service.Exceptions;
-using AdoptMe.Web.Models.Donations;
 using AdoptMe.Web.ExceptionHandling;
+using AdoptMe.Web.Models.Donations;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
-using System;
-using NetTopologySuite.Geometries;
 
 namespace AdoptMe.Web.Controllers
 {
