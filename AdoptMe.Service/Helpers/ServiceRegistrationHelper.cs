@@ -9,6 +9,7 @@ namespace AdoptMe.Service.Helpers
         {
             services.AddScoped<IPetService, PetService>();
             services.AddScoped<IShelterService, ShelterService>();
+            services.AddScoped<IDonationService, DonationService>();
             return services;
         }
     }
