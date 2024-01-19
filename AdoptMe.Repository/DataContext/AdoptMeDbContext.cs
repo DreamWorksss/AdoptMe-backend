@@ -25,11 +25,16 @@ namespace AdoptMe.Repository.DataContext
                 .HasKey(x =>x.Id);
             modelBuilder.Entity<AdoptionRequest>()
                 .Property(x => x.Id).ValueGeneratedOnAdd();
+            modelBuilder.Entity<AdoptionAtDistance>()
+                .HasKey(x => x.Id);
+            modelBuilder.Entity<AdoptionAtDistance>()
+                .Property(x => x.Id).ValueGeneratedOnAdd();
         }
 
         public DbSet<Pet> Pets { get; set; }
         public DbSet<Shelter> Shelters { get; set; }
         public DbSet<Donation> Donations { get; set; }
+        public DbSet<AdoptionAtDistance> AdoptionsAtDistance { get; set; }
         public DbSet<AdoptionRequest> AdoptionRequests { get; set; }   
     }
 }
