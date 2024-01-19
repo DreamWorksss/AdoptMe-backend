@@ -4,9 +4,7 @@ using AdoptMe.Repository.Interfaces;
 using AdoptMe.Repository.Models;
 using AdoptMe.Service.Exceptions.AdoptionRequests;
 using AdoptMe.Service.Interfaces;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using System.Collections.Generic;
 
 namespace AdoptMe.Service
 {
