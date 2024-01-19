@@ -18,7 +18,8 @@ namespace AdoptMe.Repository.Interfaces
         /// <returns>Paginated list of animals</returns>
         PaginatedList<Pet> RetrievePets(int page = 0, int pageSize = 15, string sortBy = "", bool sortDesc = false);
 
-
+        PaginatedList<Pet> RetrievePetsByShelter(int shelterId, int page = 0, int pageSize = 15);
+        
         /// <summary>
         /// Retrieves a list of all pets without pagination.
         /// </summary>

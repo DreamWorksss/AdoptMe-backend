@@ -4,6 +4,7 @@ using AdoptMe.Repository.DataContext;
 using AdoptMe.Repository.Interfaces;
 using AdoptMe.Repository.Models;
 using Microsoft.EntityFrameworkCore;
+using Z.EntityFramework.Plus;
 
 namespace AdoptMe.Repository
 {
@@ -35,7 +36,21 @@ namespace AdoptMe.Repository
                 TotalNumberOfPages = (int)Math.Ceiling(animalCount / (double)pageSize)
             };
         }
+        
+        public PaginatedList<Pet> RetrievePetsByShelter(int shelterId, int page = 0, int pageSize = 15)
+        {
+            var pets = _context.Pets.AsQueryable();
+            pets = pets.Where(p => p.ShelterId == shelterId);
 
+            var animalCount = pets.Count();
+            return new PaginatedList<Pet>
+            {
+                Entities = pets.Skip(page * pageSize).Take(pageSize).ToList(),
+                TotalNumberOfEntities = animalCount,
+                TotalNumberOfPages = (int)Math.Ceiling(animalCount / (double)pageSize)
+            };
+        }
+        
         public List<Pet> GetAllPets()
         {
             return _context.Pets.ToList();

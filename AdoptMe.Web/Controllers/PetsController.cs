@@ -34,6 +34,13 @@ namespace AdoptMe.Web.Controllers
         }
 
         [HttpGet]
+        public IActionResult RetrievePetsByShelter([FromQuery] PetFilterFields petFilterFields)
+        {
+            var pets = _petService.RetrievePetsByShelter(petFilterFields.ShelterId, petFilterFields.Page, petFilterFields.PageSize);
+            return ResponseHandler.HandleResponse(pets);
+        }
+        
+        [HttpGet]
         public IActionResult RetrieveAllPets()
         {
             var allPets = _petService.GetAllPets();
