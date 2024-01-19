@@ -35,6 +35,7 @@ namespace AdoptMe.Repository.DataContext
         public DbSet<Shelter> Shelters { get; set; }
         public DbSet<Donation> Donations { get; set; }
         public DbSet<AdoptionAtDistance> AdoptionsAtDistance { get; set; }
+        
         public DbSet<AdoptionRequest> AdoptionRequests { get; set; }   
     }
 }
