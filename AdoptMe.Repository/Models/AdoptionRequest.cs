@@ -1,4 +1,6 @@
-﻿namespace AdoptMe.Repository.Models
+﻿using System.Text.Json.Serialization;
+
+namespace AdoptMe.Repository.Models
 {
     public class AdoptionRequest
     {
@@ -8,6 +10,8 @@
         public string UserEmail { get; set; }
         public string Message { get; set; }
         public int PetId {  get; set; }
+        [JsonIgnore]
+        public virtual Pet Pet { get; set; }
 
         public AdoptionRequest() { }
 

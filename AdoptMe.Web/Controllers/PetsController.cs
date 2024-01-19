@@ -65,7 +65,7 @@ namespace AdoptMe.Web.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdatePet(int id, [FromBody] PetAdditionModel petUpdateModel)
+        public IActionResult UpdatePet(int id, [FromBody] PetUpdateModel petUpdateModel)
         {
             if (petUpdateModel != null)
             {
