@@ -29,6 +29,12 @@ namespace AdoptMe.Service.Interfaces
         PaginatedList<Pet> RetrievePetsByShelter(int shelterId, int page = 0, int pageSize = 15);
 
         /// <summary>
+        /// Retrieves a list of all pets
+        /// </summary>
+        /// <returns>Get a list of all pets</returns>
+        List<Pet> GetAllPets();
+
+        /// <summary>
         /// Adds a new animal
         /// </summary>
         /// <param name="animal"></param>
@@ -37,8 +43,8 @@ namespace AdoptMe.Service.Interfaces
         /// <summary>
         /// Deletes an animal from the database
         /// </summary>
-        /// <param name="animal"></param>
-        void DeleteAnimal(Pet animal);
+        /// <param name="petId"></param>
+        void DeleteAnimal(int petId);
 
         /// <summary>
         /// Updates an animal from the database

@@ -1,5 +1,6 @@
 ﻿using AdoptMe.Common.CommonConstants;
 using AdoptMe.Common.Models;
+using AdoptMe.Repository;
 using AdoptMe.Repository.Interfaces;
 using AdoptMe.Repository.Models;
 using AdoptMe.Service.Exceptions.Pets;
@@ -22,14 +23,19 @@ namespace AdoptMe.Service
             return _petRepository.Add(animal);
         }
 
-        public void DeleteAnimal(Pet animal)
+        public void DeleteAnimal(int petId)
         {
-            _petRepository.Delete(animal);
+            _petRepository.DeletePet(petId);
         }
 
         public Pet RetrievePet(int id)
         {
             return _petRepository.RetrieveById(id) ?? throw new PetNotFoundException();
+        }
+
+        public List<Pet> GetAllPets()
+        {
+            return _petRepository.GetAllPets();
         }
 
         public PaginatedList<Pet> RetrievePets(int page = 0, int pageSize = 15, string sortBy = PetSortingFields.Name, bool sortDesc = false)
@@ -44,7 +50,7 @@ namespace AdoptMe.Service
 
         public void UpdateAnimal(Pet animal)
         {
-            _petRepository.Update(animal);
+            _petRepository.UpdatePet(animal);
         }
     }
 }
