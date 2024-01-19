@@ -21,10 +21,15 @@ namespace AdoptMe.Repository.DataContext
                 .HasKey(x => x.Id);
             modelBuilder.Entity<Donation>()
                 .Property(x => x.Id).ValueGeneratedOnAdd();
+            modelBuilder.Entity<AdoptionRequest>()
+                .HasKey(x =>x.Id);
+            modelBuilder.Entity<AdoptionRequest>()
+                .Property(x => x.Id).ValueGeneratedOnAdd();
         }
 
         public DbSet<Pet> Pets { get; set; }
         public DbSet<Shelter> Shelters { get; set; }
         public DbSet<Donation> Donations { get; set; }
+        public DbSet<AdoptionRequest> AdoptionRequests { get; set; }   
     }
 }
