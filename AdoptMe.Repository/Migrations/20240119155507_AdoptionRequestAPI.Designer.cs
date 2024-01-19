@@ -3,6 +3,7 @@ using System;
 using AdoptMe.Repository.DataContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AdoptMe.Repository.Migrations
 {
     [DbContext(typeof(AdoptMeDbContext))]
-    partial class AdoptMeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240119155507_AdoptionRequestAPI")]
+    partial class AdoptionRequestAPI
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,8 +53,6 @@ namespace AdoptMe.Repository.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PetId");
 
                     b.ToTable("AdoptionRequests");
                 });
@@ -133,17 +134,6 @@ namespace AdoptMe.Repository.Migrations
                     b.ToTable("Shelters");
                 });
 
-            modelBuilder.Entity("AdoptMe.Repository.Models.AdoptionRequest", b =>
-                {
-                    b.HasOne("AdoptMe.Repository.Models.Pet", "Pet")
-                        .WithMany("AdoptionRequests")
-                        .HasForeignKey("PetId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Pet");
-                });
-
             modelBuilder.Entity("AdoptMe.Repository.Models.Pet", b =>
                 {
                     b.HasOne("AdoptMe.Repository.Models.Shelter", "Shelter")
@@ -153,11 +143,6 @@ namespace AdoptMe.Repository.Migrations
                         .IsRequired();
 
                     b.Navigation("Shelter");
-                });
-
-            modelBuilder.Entity("AdoptMe.Repository.Models.Pet", b =>
-                {
-                    b.Navigation("AdoptionRequests");
                 });
 
             modelBuilder.Entity("AdoptMe.Repository.Models.Shelter", b =>

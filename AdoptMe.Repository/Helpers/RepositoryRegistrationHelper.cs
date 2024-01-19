@@ -11,6 +11,7 @@ namespace AdoptMe.Repository.Helpers
             services.AddScoped<IPetRepository, PetRepository>();
             services.AddScoped<IShelterRepository, ShelterRepository>();
             services.AddScoped<IDonationRepository, DonationRepository>();
+            services.AddScoped<IAdoptionRequestRepository, AdoptionRequestRepository>();
             return services;
         }
     }

@@ -1,4 +1,5 @@
 ﻿using AdoptMe.Repository.Models;
+using AdoptMe.Web.Models.AdoptionRequests;
 using AdoptMe.Web.Models.Animals;
 using AdoptMe.Web.Models.Donations;
 using AdoptMe.Web.Models.Shelters;
@@ -14,6 +15,7 @@ namespace AdoptMe.Web.AutoMapper
             this.CreateMap<ShelterAdditionModel, Shelter>().ReverseMap();
             this.CreateMap<ShelterUpdateModel, Shelter>().ReverseMap();
             this.CreateMap<DonationAdditionModel, Donation>().ReverseMap();
+            this.CreateMap<AdoptionRequestAdditionModel, AdoptionRequest>().ReverseMap();
         }
     }
 }

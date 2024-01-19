@@ -53,7 +53,7 @@ namespace AdoptMe.Repository
         
         public List<Pet> GetAllPets()
         {
-            return _context.Pets.ToList();
+            return _context.Pets.Include(s => s.AdoptionRequests).ToList();
         }
 
         public void UpdatePet(Pet pet)

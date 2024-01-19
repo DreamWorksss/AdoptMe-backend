@@ -13,9 +13,11 @@ namespace AdoptMe.Repository.Models
         public int ShelterId {  get; set; }
         [JsonIgnore]
         public virtual Shelter Shelter { get; set; }
+        public virtual List<AdoptionRequest> AdoptionRequests { get; set; }
 
         public Pet()
         {
+            AdoptionRequests = new List<AdoptionRequest>();
         }
 
         public Pet(int id, string name, string gender, DateTime birthdate, string color, string description, int shelterId)
@@ -27,6 +29,7 @@ namespace AdoptMe.Repository.Models
             Color = color;
             Description = description;
             ShelterId = shelterId;
+            AdoptionRequests = new List<AdoptionRequest>();
         }
 
         public Pet(string name, string gender, DateTime birthdate, string color, string description, int shelterId)
@@ -37,6 +40,7 @@ namespace AdoptMe.Repository.Models
             Color = color;
             Description = description;
             ShelterId = shelterId;
+            AdoptionRequests = new List<AdoptionRequest>();
         }
     }
 }
