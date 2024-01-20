@@ -63,6 +63,11 @@ namespace AdoptMe.Web.Controllers
                 var existingDonation = _donationService.RetrieveDonation(id);
                 if (existingDonation != null)
                 {
+
+                    existingDonation.PetId = donationUpdateModel.PetId;
+                    existingDonation.UserEmail = donationUpdateModel.UserEmail; 
+                    existingDonation.Money = donationUpdateModel.Money;
+
                     _donationService.UpdateDonation(existingDonation);
                     return ResponseHandler.HandleResponse(existingDonation);
                 }

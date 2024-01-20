@@ -13,6 +13,7 @@ namespace AdoptMe.Service.Helpers
             services.AddScoped<IAdoptionRequestService, AdoptionRequestService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<IAdoptionAtDistanceService, AdoptionAtDistanceService>();
             return services;
         }
     }
