@@ -42,6 +42,7 @@ namespace AdoptMe.Repository
         {
             _context.Update(adoptionAtDistance);
             _context.SaveChanges();
+            
         }
 
         public void DeleteAdoptionAtDistance(AdoptionAtDistance adoptionAtDistance)

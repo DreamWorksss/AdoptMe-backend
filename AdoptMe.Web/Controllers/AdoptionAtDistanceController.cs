@@ -59,11 +59,23 @@ namespace AdoptMe.Web.Controllers
         [HttpPut("{id}")]
         public IActionResult UpdateAdoptionAtDistance(int id, [FromBody] AdoptionAtDistanceAdditionModel adoptionAtDistanceUpdateModel)
         {
+            
             if (adoptionAtDistanceUpdateModel != null)
             {
+
                 var existingAdoptionAtDistance = _adoptionAtDistanceService.RetrieveAdoptionAtDistance(id);
                 if (existingAdoptionAtDistance != null)
                 {
+                    existingAdoptionAtDistance.PetId = adoptionAtDistanceUpdateModel.PetId;
+                    existingAdoptionAtDistance.UserName = adoptionAtDistanceUpdateModel.UserName;
+                    existingAdoptionAtDistance.PhoneNumber = adoptionAtDistanceUpdateModel.PhoneNumber;
+                    existingAdoptionAtDistance.UserEmail = adoptionAtDistanceUpdateModel.UserEmail;
+                    existingAdoptionAtDistance.Sum = adoptionAtDistanceUpdateModel.Sum;
+                    existingAdoptionAtDistance.Frequency = adoptionAtDistanceUpdateModel.Frequency;
+                    existingAdoptionAtDistance.StartDate = adoptionAtDistanceUpdateModel.StartDate;
+                    existingAdoptionAtDistance.EndDate = adoptionAtDistanceUpdateModel.EndDate;
+                    existingAdoptionAtDistance.PaymentMethod = adoptionAtDistanceUpdateModel.PaymentMethod;
+
                     _adoptionAtDistanceService.UpdateAdoptionAtDistance(existingAdoptionAtDistance);
                     return ResponseHandler.HandleResponse(existingAdoptionAtDistance);
                 }

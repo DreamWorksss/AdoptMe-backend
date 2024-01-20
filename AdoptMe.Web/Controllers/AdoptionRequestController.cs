@@ -63,6 +63,13 @@ namespace AdoptMe.Web.Controllers
                 var existingAdoptionRequest = _adoptionRequestService.RetrieveAdoptionRequest(id);
                 if (existingAdoptionRequest != null)
                 {
+                    existingAdoptionRequest.Name = adoptionRequestUpdateModel.Name;
+                    existingAdoptionRequest.Phone = adoptionRequestUpdateModel.Phone;
+                    existingAdoptionRequest.UserEmail = adoptionRequestUpdateModel.UserEmail;
+                    existingAdoptionRequest.Message = adoptionRequestUpdateModel.Message;
+                    existingAdoptionRequest.PetId = adoptionRequestUpdateModel.PetId;   
+
+
                     _adoptionRequestService.UpdateAdoptionRequest(existingAdoptionRequest);
                     return ResponseHandler.HandleResponse(existingAdoptionRequest);
                 }

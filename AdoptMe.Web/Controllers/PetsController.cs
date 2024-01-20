@@ -72,6 +72,14 @@ namespace AdoptMe.Web.Controllers
                 var existingPet = _petService.RetrievePet(id);
                 if (existingPet != null)
                 {
+                    existingPet.Name = petUpdateModel.Name;
+                    existingPet.Description = petUpdateModel.Description;
+                    existingPet.Gender = petUpdateModel.Gender;
+                    existingPet.Birthdate = petUpdateModel.Birthdate;
+                    existingPet.Color = petUpdateModel.Color;
+                    existingPet.ShelterId = petUpdateModel.ShelterId;
+
+
                     _petService.UpdateAnimal(existingPet);
                     return ResponseHandler.HandleResponse(existingPet);
                 }
