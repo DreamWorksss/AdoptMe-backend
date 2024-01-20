@@ -1,6 +1,5 @@
 ﻿using AdoptMe.Repository.Models;
 using Microsoft.EntityFrameworkCore;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace AdoptMe.Repository.DataContext
 {
@@ -26,6 +25,10 @@ namespace AdoptMe.Repository.DataContext
                 .HasKey(x =>x.Id);
             modelBuilder.Entity<AdoptionRequest>()
                 .Property(x => x.Id).ValueGeneratedOnAdd();
+            modelBuilder.Entity<User>()
+                .HasKey(x => x.Id);
+            modelBuilder.Entity<User>()
+                .Property(x => x.Id).ValueGeneratedOnAdd();
             modelBuilder.Entity<AdoptionAtDistance>()
                 .HasKey(x => x.Id);
             modelBuilder.Entity<AdoptionAtDistance>()
@@ -37,5 +40,6 @@ namespace AdoptMe.Repository.DataContext
         public DbSet<Donation> Donations { get; set; }
         public DbSet<AdoptionAtDistance> AdoptionsAtDistance { get; set; }
         public DbSet<AdoptionRequest> AdoptionRequests { get; set; }   
+        public DbSet<User> Users {  get; set; }
     }
 }

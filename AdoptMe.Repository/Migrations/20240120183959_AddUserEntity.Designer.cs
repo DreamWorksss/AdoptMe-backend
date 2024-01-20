@@ -3,6 +3,7 @@ using System;
 using AdoptMe.Repository.DataContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AdoptMe.Repository.Migrations
 {
     [DbContext(typeof(AdoptMeDbContext))]
-    partial class AdoptMeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240120183959_AddUserEntity")]
+    partial class AddUserEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,51 +24,6 @@ namespace AdoptMe.Repository.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
-
-            modelBuilder.Entity("AdoptMe.Repository.Models.AdoptionAtDistance", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Frequency")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("PaymentMethod")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("PetId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<decimal>("Sum")
-                        .HasColumnType("numeric");
-
-                    b.Property<string>("UserEmail")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AdoptionsAtDistance");
-                });
 
             modelBuilder.Entity("AdoptMe.Repository.Models.AdoptionRequest", b =>
                 {
@@ -176,10 +134,6 @@ namespace AdoptMe.Repository.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
@@ -224,7 +178,7 @@ namespace AdoptMe.Repository.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int?>("ShelterId")
+                    b.Property<int>("ShelterId")
                         .HasColumnType("integer");
 
                     b.Property<string>("Username")
@@ -264,7 +218,9 @@ namespace AdoptMe.Repository.Migrations
                 {
                     b.HasOne("AdoptMe.Repository.Models.Shelter", "Shelter")
                         .WithMany()
-                        .HasForeignKey("ShelterId");
+                        .HasForeignKey("ShelterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Shelter");
                 });

@@ -13,6 +13,7 @@ namespace AdoptMe.Repository.Helpers
             services.AddScoped<IDonationRepository, DonationRepository>();
             services.AddScoped<IAdoptionAtDistanceRepository, AdoptionAtDistanceRepository>();
             services.AddScoped<IAdoptionRequestRepository, AdoptionRequestRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
             return services;
         }
     }

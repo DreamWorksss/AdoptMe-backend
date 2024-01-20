@@ -32,5 +32,17 @@ namespace AdoptMe.Web.ExceptionHandling
             };
             return new GenericActionResult(response, problemDetails);
         }
+
+        public static GenericActionResult HandleUnauthorizedResponse(string message)
+        {
+            var problemDetails = new ProblemDetails
+            {
+                Status = StatusCodes.Status401Unauthorized,
+                Type = ErrorTypes.Unauthorized,
+                Title = "You are not authorized",
+                Detail = message
+            };
+            return new GenericActionResult(problemDetails);
+        }
     }
 }
