@@ -56,6 +56,11 @@ namespace AdoptMe.Repository
             return _context.Pets.Include(s => s.AdoptionRequests).ToList();
         }
 
+        public Pet? RetrievePetWithRequests(int id)
+        {
+            return _context.Pets.Include(s => s.AdoptionRequests).FirstOrDefault(p => p.Id == id);
+        }
+
         public void UpdatePet(Pet pet)
         {
             _context.Update(pet);

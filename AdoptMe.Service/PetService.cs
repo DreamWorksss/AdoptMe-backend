@@ -33,6 +33,11 @@ namespace AdoptMe.Service
             return _petRepository.RetrieveById(id) ?? throw new PetNotFoundException();
         }
 
+        public Pet RetrievePetWithRequests(int id)
+        {
+            return _petRepository.RetrievePetWithRequests(id) ?? throw new PetNotFoundException();
+        }
+
         public List<Pet> GetAllPets()
         {
             return _petRepository.GetAllPets();

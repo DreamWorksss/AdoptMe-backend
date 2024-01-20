@@ -53,6 +53,12 @@ namespace AdoptMe.Web.Controllers
             return ResponseHandler.HandleResponse(_petService.RetrievePet(id));
         }
 
+        [HttpGet]
+        public IActionResult RetrievePetWithRequests(int id)
+        {
+            return ResponseHandler.HandleResponse(_petService.RetrievePetWithRequests(id));
+        }
+
         [HttpPost]
         public IActionResult AddPet([FromBody] PetAdditionModel petAdditionModel)
         {

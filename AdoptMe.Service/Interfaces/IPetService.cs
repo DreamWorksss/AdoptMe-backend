@@ -28,6 +28,8 @@ namespace AdoptMe.Service.Interfaces
 
         PaginatedList<Pet> RetrievePetsByShelter(int shelterId, int page = 0, int pageSize = 15);
 
+        Pet RetrievePetWithRequests(int id);
+
         /// <summary>
         /// Retrieves a list of all pets
         /// </summary>
