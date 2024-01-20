@@ -1,7 +1,9 @@
-﻿using AdoptMe.Common.DatabaseConstants;
+﻿using AdoptMe.Common.CommonConstants;
+using AdoptMe.Common.DatabaseConstants;
 using AdoptMe.Service.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using System.Net;
 using System.Text.Json;
 
@@ -40,6 +42,17 @@ namespace AdoptMe.Web.ExceptionHandling
                                 Detail = ex.Message,
                                 Status = StatusCodes.Status400BadRequest,
                                 Type = ErrorTypes.AlreadyExists
+                            };
+                            break;
+                        }
+                    case SecurityTokenException _:
+                    case SecurityTokenArgumentException _:
+                        {
+                            error = new ProblemDetails()
+                            {
+                                Detail = ServerErrorMessages.InvalidToken,
+                                Status = StatusCodes.Status401Unauthorized,
+                                Type = ErrorTypes.Unauthorized
                             };
                             break;
                         }

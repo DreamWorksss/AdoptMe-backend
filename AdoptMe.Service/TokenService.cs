@@ -23,7 +23,7 @@ namespace AdoptMe.Service
         public string GenerateToken(int userId, string userRole, int shelterId)
         {
             var tokenSettings = _configuration.GetRequiredSection(ServerConstants.Token);
-            if (tokenSettings == null || !IsConfigurationValid(tokenSettings))
+            if (!IsConfigurationValid(tokenSettings))
             {
                 throw new FileLoadException("There is no authorization token configuration!");
             }
@@ -53,6 +53,18 @@ namespace AdoptMe.Service
             {
                 throw new FileLoadException("There is no authorization token configuration!");
             }
+            var validationParameters = BuildTokenValidationParameters(tokenSettings);
+            return BuildTokenValidatorResult(new JwtSecurityTokenHandler().ValidateToken(token, validationParameters, out _));
+        }
+
+        public static bool IsConfigurationValid(IConfigurationSection configuration)
+        {
+            return configuration != null && int.TryParse(configuration[ServerConstants.ExpirationTime], out _) && !string.IsNullOrEmpty(configuration[ServerConstants.Issuer])
+                && !string.IsNullOrEmpty(configuration[ServerConstants.Audience]) && !string.IsNullOrEmpty(configuration[ServerConstants.SecretKey]);
+        }
+
+        public static TokenValidationParameters BuildTokenValidationParameters(IConfigurationSection tokenSettings)
+        {
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenSettings[ServerConstants.SecretKey]!));
             var validationParameters = new TokenValidationParameters
             {
@@ -62,23 +74,17 @@ namespace AdoptMe.Service
                 ValidIssuer = tokenSettings[ServerConstants.Issuer],
                 ValidAudience = tokenSettings[ServerConstants.Audience],
                 IssuerSigningKey = key,
+                ValidateLifetime = true,
                 ClockSkew = TimeSpan.FromTicks(TimeSpan.TicksPerMinute * 5)
             };
-
-            return BuildTokenValidatorResult(new JwtSecurityTokenHandler().ValidateToken(token, validationParameters, out _));
-        }
-
-        private bool IsConfigurationValid(IConfigurationSection configuration)
-        {
-            return int.TryParse(configuration[ServerConstants.ExpirationTime], out _) && !string.IsNullOrEmpty(configuration[ServerConstants.Issuer])
-                && !string.IsNullOrEmpty(configuration[ServerConstants.Audience]) && !string.IsNullOrEmpty(configuration[ServerConstants.SecretKey]);
+            return validationParameters;
         }
 
         private TokenValidatorResult BuildTokenValidatorResult(ClaimsPrincipal claims)
         {
             var userRole = claims.FindFirst(ClaimTypes.Role)?.Value;
-            if (int.TryParse(claims.FindFirst(ClaimTypes.NameIdentifier)?.Value, out var userId)
-                || int.TryParse(claims.FindFirst(ClaimTypes.GroupSid)?.Value, out var shelterId)
+            if (!int.TryParse(claims.FindFirst(ClaimTypes.NameIdentifier)?.Value, out var userId)
+                || !int.TryParse(claims.FindFirst(ClaimTypes.GroupSid)?.Value, out var shelterId)
                 || userRole == null)
             {
                 throw new SecurityTokenValidationException("Could not validate the token!");

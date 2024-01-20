@@ -1,7 +1,9 @@
-﻿using AdoptMe.Service.Interfaces;
+﻿using AdoptMe.Common.CommonConstants;
+using AdoptMe.Service.Interfaces;
+using AdoptMe.Web.ExceptionHandling;
 using AdoptMe.Web.Models.Users;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace AdoptMe.Web.Controllers
 {
@@ -24,11 +26,23 @@ namespace AdoptMe.Web.Controllers
             if (userAuthModel != null)
             {
                 var user = _userService.RetrieveUser(userAuthModel.Username, userAuthModel.Password);
+                return ResponseHandler.HandleResponse(new { AuthToken = _tokenService.GenerateToken(user.Id, user.Role, user.ShelterId ?? 0) });
             }
             else
             {
-
+                return ResponseHandler.HandleResponse(UserErrorMessages.InvalidAuthModel);
             }
+        }
+
+        [HttpGet]
+        public IActionResult RetrieveUserInfo()
+        {
+            var authorizationHeader = Request.Headers.Authorization;
+            if (!string.IsNullOrEmpty(authorizationHeader))
+            {
+                return ResponseHandler.HandleResponse(new { Details = _tokenService.ValidateToken(authorizationHeader.ToString()) });
+            }
+            return ResponseHandler.HandleUnauthorizedResponse(ServerErrorMessages.InvalidToken);
         }
     }
 }

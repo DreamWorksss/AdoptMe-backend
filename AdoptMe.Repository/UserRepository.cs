@@ -15,7 +15,18 @@ namespace AdoptMe.Repository
 
         public User? RetrieveUser(string username, string password)
         {
-            return _context.Users.FirstOrDefault(x => x.Username == username && x.Password == password);
+            var userEntity = (from userInfo in _context.Users.Where(x => x.Username == username && x.Password == password)
+                              join shelter in _context.Shelters
+                              on userInfo.ShelterId equals shelter.Id into shelters
+                              from shelter in shelters.DefaultIfEmpty()
+                              select new { userInfo, shelter }).FirstOrDefault();
+
+            var user = userEntity?.userInfo;
+            if (user != null)
+            {
+                user.Shelter = userEntity?.shelter;
+            }
+            return user;
         }
     }
 }

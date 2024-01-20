@@ -5,7 +5,6 @@ using AdoptMe.Repository.Enums.Pets;
 using AdoptMe.Repository.Interfaces;
 using AdoptMe.Repository.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 using Z.EntityFramework.Plus;
 
 namespace AdoptMe.Repository
@@ -21,7 +20,7 @@ namespace AdoptMe.Repository
 
         public PaginatedList<Pet> RetrievePets(int page = 0, int pageSize = 15, string sortBy = "", bool sortDesc = false)
         {
-            var pets = _context.Pets.AsQueryable();
+            var pets = _context.Pets.Include(s => s.Shelter).AsQueryable();
             pets = sortBy switch
             {
                 PetSortingFields.Color => sortDesc ? pets.OrderByDescending(x => x.Color) : pets.OrderBy(x => x.Color),
@@ -55,7 +54,7 @@ namespace AdoptMe.Repository
         
         public List<Pet> GetAllPets()
         {
-            return _context.Pets.Include(s => s.AdoptionRequests).ToList();
+            return _context.Pets.Include(s => s.Shelter).Include(s => s.AdoptionRequests).ToList();
         }
 
         public Pet? RetrievePetWithRequests(int id)

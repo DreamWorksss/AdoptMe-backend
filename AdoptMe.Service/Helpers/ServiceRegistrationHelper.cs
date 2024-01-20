@@ -11,6 +11,8 @@ namespace AdoptMe.Service.Helpers
             services.AddScoped<IShelterService, ShelterService>();
             services.AddScoped<IDonationService, DonationService>();
             services.AddScoped<IAdoptionRequestService, AdoptionRequestService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ITokenService, TokenService>();
             return services;
         }
     }

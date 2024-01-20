@@ -9,6 +9,7 @@ using Swashbuckle.AspNetCore.Annotations;
 using System;
 using AdoptMe.Service.Exceptions.Shelters;
 using AdoptMe.Web.ExceptionHandling;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AdoptMe.Web.Controllers
 {
@@ -48,6 +49,7 @@ namespace AdoptMe.Web.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = UserRoles.Admin)]
         public IActionResult AddShelter([FromBody] ShelterAdditionModel shelterAdditionModel)
         {
             if (shelterAdditionModel != null)
@@ -59,6 +61,7 @@ namespace AdoptMe.Web.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = UserRoles.Admin)]
         public IActionResult UpdateShelter(int id, [FromBody] ShelterUpdateModel shelterUpdateModel)
         {
             if (shelterUpdateModel != null)
@@ -80,6 +83,7 @@ namespace AdoptMe.Web.Controllers
 
 
         [HttpDelete]
+        [Authorize(Roles = UserRoles.Admin)]
         public IActionResult DeleteShelter(int id)
         {
             _shelterService.DeleteShelter(id);

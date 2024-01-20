@@ -7,6 +7,7 @@ using AdoptMe.Web.Models.Animals;
 using AdoptMe.Web.Models.Donations;
 using AdoptMe.Web.Models.Pets;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -60,6 +61,7 @@ namespace AdoptMe.Web.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult AddPet([FromBody] PetAdditionModel petAdditionModel)
         {
             if (petAdditionModel != null)
@@ -71,6 +73,7 @@ namespace AdoptMe.Web.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public IActionResult UpdatePet(int id, [FromBody] PetUpdateModel petUpdateModel)
         {
             if (petUpdateModel != null)
@@ -91,6 +94,7 @@ namespace AdoptMe.Web.Controllers
         }
 
         [HttpDelete]
+        [Authorize]
         public IActionResult DeletePet(int id)
         {
             _petService.DeleteAnimal(id);
@@ -98,6 +102,7 @@ namespace AdoptMe.Web.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public IActionResult AcceptPetAdoption(int id)
         {
             _petService.AcceptPetAdoption(id);
