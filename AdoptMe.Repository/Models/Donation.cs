@@ -1,4 +1,4 @@
-﻿namespace AdoptMe.Repository.Models
+﻿ namespace AdoptMe.Repository.Models
 {
     public class Donation
     {
