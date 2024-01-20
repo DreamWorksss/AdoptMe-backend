@@ -53,6 +53,12 @@ namespace AdoptMe.Web.Controllers
             return ResponseHandler.HandleResponse(_petService.RetrievePet(id));
         }
 
+        [HttpGet]
+        public IActionResult RetrievePetWithRequests(int id)
+        {
+            return ResponseHandler.HandleResponse(_petService.RetrievePetWithRequests(id));
+        }
+
         [HttpPost]
         public IActionResult AddPet([FromBody] PetAdditionModel petAdditionModel)
         {
@@ -88,6 +94,13 @@ namespace AdoptMe.Web.Controllers
         public IActionResult DeletePet(int id)
         {
             _petService.DeleteAnimal(id);
+            return ResponseHandler.HandleResponse(id);
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult AcceptPetAdoption(int id)
+        {
+            _petService.AcceptPetAdoption(id);
             return ResponseHandler.HandleResponse(id);
         }
     }

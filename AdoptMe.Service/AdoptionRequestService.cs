@@ -1,5 +1,6 @@
 ﻿using AdoptMe.Common.CommonConstants;
 using AdoptMe.Common.Models;
+using AdoptMe.Repository.Enums.Pets;
 using AdoptMe.Repository.Interfaces;
 using AdoptMe.Repository.Models;
 using AdoptMe.Service.Exceptions.AdoptionRequests;

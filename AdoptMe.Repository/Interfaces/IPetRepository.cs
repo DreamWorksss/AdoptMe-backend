@@ -19,7 +19,9 @@ namespace AdoptMe.Repository.Interfaces
         PaginatedList<Pet> RetrievePets(int page = 0, int pageSize = 15, string sortBy = "", bool sortDesc = false);
 
         PaginatedList<Pet> RetrievePetsByShelter(int shelterId, int page = 0, int pageSize = 15);
-        
+
+        Pet? RetrievePetWithRequests(int id);
+
         /// <summary>
         /// Retrieves a list of all pets without pagination.
         /// </summary>
@@ -37,5 +39,7 @@ namespace AdoptMe.Repository.Interfaces
         /// </summary>
         /// <param name="petId">The identifier of the pet to delete.</param>
         void DeletePet(int petId);
+
+        void AcceptPetAdoption(int id);
     }
 }

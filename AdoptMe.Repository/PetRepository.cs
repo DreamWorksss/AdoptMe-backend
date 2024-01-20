@@ -1,9 +1,11 @@
 ﻿using AdoptMe.Common.CommonConstants;
 using AdoptMe.Common.Models;
 using AdoptMe.Repository.DataContext;
+using AdoptMe.Repository.Enums.Pets;
 using AdoptMe.Repository.Interfaces;
 using AdoptMe.Repository.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Z.EntityFramework.Plus;
 
 namespace AdoptMe.Repository
@@ -56,6 +58,11 @@ namespace AdoptMe.Repository
             return _context.Pets.Include(s => s.AdoptionRequests).ToList();
         }
 
+        public Pet? RetrievePetWithRequests(int id)
+        {
+            return _context.Pets.Include(s => s.AdoptionRequests).FirstOrDefault(p => p.Id == id);
+        }
+
         public void UpdatePet(Pet pet)
         {
             _context.Update(pet);
@@ -69,6 +76,23 @@ namespace AdoptMe.Repository
             if (pet != null)
             {
                 _context.Pets.Remove(pet);
+                _context.SaveChanges();
+            }
+        }
+
+        public void AcceptPetAdoption(int id)
+        {
+            var pet = _context.Pets.Find(id);
+            if (pet != null)
+            {
+                pet.Status = PetStatus.Adopted;
+                var adoptionRequestsCopy = pet.AdoptionRequests.ToList();
+                foreach (var request in adoptionRequestsCopy)
+                {
+                    pet.AdoptionRequests.Remove(request);
+                    _context.AdoptionRequests.Remove(request);
+                }
+                pet.AdoptionRequests.Clear();
                 _context.SaveChanges();
             }
         }

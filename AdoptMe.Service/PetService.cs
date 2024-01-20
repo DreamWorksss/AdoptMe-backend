@@ -1,6 +1,5 @@
 ﻿using AdoptMe.Common.CommonConstants;
 using AdoptMe.Common.Models;
-using AdoptMe.Repository;
 using AdoptMe.Repository.Interfaces;
 using AdoptMe.Repository.Models;
 using AdoptMe.Service.Exceptions.Pets;
@@ -33,6 +32,11 @@ namespace AdoptMe.Service
             return _petRepository.RetrieveById(id) ?? throw new PetNotFoundException();
         }
 
+        public Pet RetrievePetWithRequests(int id)
+        {
+            return _petRepository.RetrievePetWithRequests(id) ?? throw new PetNotFoundException();
+        }
+
         public List<Pet> GetAllPets()
         {
             return _petRepository.GetAllPets();
@@ -51,6 +55,11 @@ namespace AdoptMe.Service
         public void UpdateAnimal(Pet animal)
         {
             _petRepository.UpdatePet(animal);
+        }
+
+        public void AcceptPetAdoption(int id)
+        {
+            _petRepository.AcceptPetAdoption(id);
         }
     }
 }
