@@ -39,5 +39,7 @@ namespace AdoptMe.Repository.Interfaces
         /// </summary>
         /// <param name="petId">The identifier of the pet to delete.</param>
         void DeletePet(int petId);
+
+        void AcceptPetAdoption(int id);
     }
 }

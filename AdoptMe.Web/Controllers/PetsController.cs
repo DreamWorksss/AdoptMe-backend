@@ -96,5 +96,12 @@ namespace AdoptMe.Web.Controllers
             _petService.DeleteAnimal(id);
             return ResponseHandler.HandleResponse(id);
         }
+
+        [HttpPut("{id}")]
+        public IActionResult AcceptPetAdoption(int id)
+        {
+            _petService.AcceptPetAdoption(id);
+            return ResponseHandler.HandleResponse(id);
+        }
     }
 }

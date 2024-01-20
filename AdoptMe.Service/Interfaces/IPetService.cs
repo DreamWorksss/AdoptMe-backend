@@ -53,5 +53,7 @@ namespace AdoptMe.Service.Interfaces
         /// </summary>
         /// <param name="animal"></param>
         void UpdateAnimal(Pet animal);
+
+        void AcceptPetAdoption(int id);
     }
 }

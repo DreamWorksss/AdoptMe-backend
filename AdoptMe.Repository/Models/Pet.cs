@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using AdoptMe.Repository.Enums.Pets;
+using System.Text.Json.Serialization;
 
 namespace AdoptMe.Repository.Models
 {
@@ -10,6 +11,7 @@ namespace AdoptMe.Repository.Models
         public DateTime Birthdate {  get; set; }
         public string Color { get; set; }
         public string Description { get; set; }
+        public PetStatus Status { get; set; }
         public int ShelterId {  get; set; }
         [JsonIgnore]
         public virtual Shelter Shelter { get; set; }
@@ -18,6 +20,7 @@ namespace AdoptMe.Repository.Models
         public Pet()
         {
             AdoptionRequests = new List<AdoptionRequest>();
+            Status = PetStatus.Unadopted;
         }
 
         public Pet(int id, string name, string gender, DateTime birthdate, string color, string description, int shelterId)
@@ -30,6 +33,7 @@ namespace AdoptMe.Repository.Models
             Description = description;
             ShelterId = shelterId;
             AdoptionRequests = new List<AdoptionRequest>();
+            Status = PetStatus.Unadopted;
         }
 
         public Pet(string name, string gender, DateTime birthdate, string color, string description, int shelterId)
@@ -41,6 +45,7 @@ namespace AdoptMe.Repository.Models
             Description = description;
             ShelterId = shelterId;
             AdoptionRequests = new List<AdoptionRequest>();
+            Status = PetStatus.Unadopted;
         }
     }
 }
