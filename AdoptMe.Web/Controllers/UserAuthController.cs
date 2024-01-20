@@ -25,7 +25,7 @@ namespace AdoptMe.Web.Controllers
         }
 
         [HttpPost]
-        [Route("api/[controller]/register")]
+        [Route("/register")]
         public IActionResult Register([FromBody] UserRegisterModel userRegisterModel)
         {
             if(userRegisterModel != null)
