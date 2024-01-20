@@ -66,6 +66,8 @@ namespace AdoptMe.Web.Controllers
                 var existingShelter = _shelterService.RetrieveShelter(id);
                 if (existingShelter != null)
                 {
+                    existingShelter.Name = shelterUpdateModel.Name;
+
                     _shelterService.UpdateShelter(existingShelter);
                     return Ok();
                 }
