@@ -5,6 +5,7 @@ namespace AdoptMe.Service.Interfaces
     public interface IUserService
     {
         User RetrieveUser(int id);
-        User RetrieveUser(string username, string password);
+        User LoginUser(string username, string password);
+        User AddUser(User user);
     }
 }

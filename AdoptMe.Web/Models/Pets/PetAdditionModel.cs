@@ -7,6 +7,7 @@
         public DateTime Birthdate { get; set; }
         public string Color { get; set; }
         public string Description { get; set; }
+        public string ImageUrl {  get; set; }
         public int ShelterId { get; set; }
     }
 }

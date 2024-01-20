@@ -28,5 +28,10 @@ namespace AdoptMe.Repository
             }
             return user;
         }
+
+        public User? RetrieveUser(string username)
+        {
+            return _context.Users.FirstOrDefault(x => x.Username == username);
+        }
     }
 }

@@ -5,5 +5,6 @@ namespace AdoptMe.Repository.Interfaces
     public interface IUserRepository : IGenericRepository<User>
     {
         User? RetrieveUser(string username, string password);
+        User? RetrieveUser(string username);
     }
 }

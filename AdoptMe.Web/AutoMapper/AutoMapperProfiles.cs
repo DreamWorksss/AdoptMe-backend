@@ -5,6 +5,7 @@ using AdoptMe.Web.Models.Donations;
 using AdoptMe.Web.Models.AdoptionsAtDistance;
 using AdoptMe.Web.Models.Shelters;
 using AutoMapper;
+using AdoptMe.Web.Models.Users;
 
 namespace AdoptMe.Web.AutoMapper
 {
@@ -18,6 +19,7 @@ namespace AdoptMe.Web.AutoMapper
             this.CreateMap<DonationAdditionModel, Donation>().ReverseMap();
             this.CreateMap<AdoptionRequestAdditionModel, AdoptionRequest>().ReverseMap();
             this.CreateMap<AdoptionAtDistanceAdditionModel, AdoptionAtDistance>().ReverseMap();
+            this.CreateMap<UserRegisterModel, User>().ReverseMap();
         }
     }
 }
