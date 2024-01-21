@@ -54,5 +54,11 @@ namespace AdoptMe.Repository
                 _context.SaveChanges();
             }
         }
+
+        public void BulkInsert(List<Shelter> shelters)
+        {
+            _context.BulkInsert(shelters);
+            _context.SaveChanges();
+        }
     }
 }

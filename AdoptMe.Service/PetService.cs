@@ -61,5 +61,10 @@ namespace AdoptMe.Service
         {
             _petRepository.AcceptPetAdoption(id);
         }
+
+        public void AddPets(List<Pet> pets)
+        {
+            _petRepository.BulkAdd(pets);
+        }
     }
 }

@@ -35,5 +35,7 @@ namespace AdoptMe.Repository.Interfaces
         /// </summary>
         /// <param name="shelterId">The identifier of the shelter to delete.</param>
         void DeleteShelter(int shelterId);
+
+        void BulkInsert(List<Shelter> shelters);
     }
 }

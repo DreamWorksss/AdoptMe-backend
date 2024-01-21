@@ -53,5 +53,7 @@ namespace AdoptMe.Service.Interfaces
         /// </summary>
         /// <param name="shelter"></param>
         void UpdateShelter(Shelter shelter);
+
+        void AddShelters(List<Shelter> shelters);
     }
 }

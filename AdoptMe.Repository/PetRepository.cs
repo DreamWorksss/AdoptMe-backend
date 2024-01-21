@@ -95,5 +95,11 @@ namespace AdoptMe.Repository
                 _context.SaveChanges();
             }
         }
+
+        public void BulkAdd(List<Pet> pets)
+        {
+            _context.BulkInsert(pets);
+            _context.SaveChanges();
+        }
     }
 }

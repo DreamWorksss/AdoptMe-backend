@@ -70,6 +70,7 @@ namespace AdoptMe.Web.Controllers
                 if (existingShelter != null)
                 {
                     existingShelter.Name = shelterUpdateModel.Name;
+                    existingShelter.ImageUrl = shelterUpdateModel.ImageUrl;
 
                     _shelterService.UpdateShelter(existingShelter);
                     return Ok();
@@ -89,6 +90,14 @@ namespace AdoptMe.Web.Controllers
         public IActionResult DeleteShelter(int id)
         {
             _shelterService.DeleteShelter(id);
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("/[action]")]
+        public IActionResult InsertShelters([FromBody] List<ShelterAdditionModel> shelters)
+        {
+            _shelterService.AddShelters(_mapper.Map<List<Shelter>>(shelters));
             return Ok();
         }
     }

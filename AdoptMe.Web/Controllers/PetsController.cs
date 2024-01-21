@@ -6,6 +6,7 @@ using AdoptMe.Web.ExceptionHandling;
 using AdoptMe.Web.Models.Animals;
 using AdoptMe.Web.Models.Donations;
 using AdoptMe.Web.Models.Pets;
+using AdoptMe.Web.Models.Shelters;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -86,6 +87,7 @@ namespace AdoptMe.Web.Controllers
                     existingPet.Gender = petUpdateModel.Gender;
                     existingPet.Birthdate = petUpdateModel.Birthdate;
                     existingPet.Color = petUpdateModel.Color;
+                    existingPet.ImageUrl = petUpdateModel.ImageUrl;
                     existingPet.ShelterId = petUpdateModel.ShelterId;
 
 
@@ -115,6 +117,14 @@ namespace AdoptMe.Web.Controllers
         {
             _petService.AcceptPetAdoption(id);
             return ResponseHandler.HandleResponse(id);
+        }
+
+        [HttpPost]
+        [Route("/[action]")]
+        public IActionResult InsertPets([FromBody] List<PetAdditionModel> pets)
+        {
+            _petService.AddPets(_mapper.Map<List<Pet>>(pets));
+            return Ok();
         }
     }
 }

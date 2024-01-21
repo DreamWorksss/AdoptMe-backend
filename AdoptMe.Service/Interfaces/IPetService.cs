@@ -55,5 +55,7 @@ namespace AdoptMe.Service.Interfaces
         void UpdateAnimal(Pet animal);
 
         void AcceptPetAdoption(int id);
+
+        void AddPets(List<Pet> pets);
     }
 }

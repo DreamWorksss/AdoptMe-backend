@@ -56,5 +56,10 @@ namespace AdoptMe.Service
             }
             _shelterRepository.UpdateShelter(shelter);
         }
+
+        public void AddShelters(List<Shelter> shelters)
+        {
+            _shelterRepository.BulkInsert(shelters);
+        }
     }
 }

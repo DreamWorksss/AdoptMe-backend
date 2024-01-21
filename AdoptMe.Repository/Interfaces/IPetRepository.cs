@@ -41,5 +41,7 @@ namespace AdoptMe.Repository.Interfaces
         void DeletePet(int petId);
 
         void AcceptPetAdoption(int id);
+
+        void BulkAdd(List<Pet> pets);
     }
 }
